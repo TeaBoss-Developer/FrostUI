@@ -17,17 +17,22 @@
 
     <!-- NuGet packaging -->
     <PackageId>FrostUI</PackageId>
+    <Title>FrostUI — WPF Glass UI Kit</Title>
     <PackageTags>wpf;acrylic;mica;glass;glassmorphism;ui;theme;windows</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/TeaBoss-Developer/FrostUI</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/TeaBoss-Developer/FrostUI</PackageProjectUrl>
     <PackageReadmeFile>README.nuget.md</PackageReadmeFile>
     <PackageReleaseNotes>WPF 1.0.0 — FrostWindow, GlassCard, glass controls, dual themes and runtime accents.</PackageReleaseNotes>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="README.nuget.md" Pack="true" PackagePath="\" />
+    <None Include="icon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>
