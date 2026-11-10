@@ -12,6 +12,7 @@ on:
 
 permissions:
   contents: read
+  id-token: write
 
 jobs:
   publish:
@@ -32,15 +33,21 @@ jobs:
           if ([string]::IsNullOrWhiteSpace($version)) { $version = "1.0.0" }
           dotnet pack src/FrostUI/FrostUI.csproj -c Release -o artifacts -p:Version=$version
 
+      # Trusted Publishing: exchange the GitHub OIDC token for a short-lived NuGet key.
+      # Requires a nuget.org trusted publishing policy for:
+      #   owner TeaBoss / repo TeaBoss-Developer/FrostUI / workflow publish-nuget.yml
+      - name: NuGet login (OIDC)
+        id: login
+        uses: NuGet/login@v1
+        with:
+          user: TeaBoss
+
       - name: Push to nuget.org
         shell: pwsh
-        env:
-          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
         run: |
-          if (-not $env:NUGET_API_KEY) { throw "Missing repository secret NUGET_API_KEY" }
           Get-ChildItem artifacts/*.nupkg | ForEach-Object {
-            dotnet nuget push $_.FullName --api-key $env:NUGET_API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate
+            dotnet nuget push $_.FullName --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
           }
           Get-ChildItem artifacts/*.snupkg -ErrorAction SilentlyContinue | ForEach-Object {
-            dotnet nuget push $_.FullName --api-key $env:NUGET_API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate
+            dotnet nuget push $_.FullName --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
           }
