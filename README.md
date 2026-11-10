@@ -73,7 +73,12 @@ FrostUI.toast('已保存');
 ### 安装
 
 ```powershell
-# 从源码打包（NuGet 正式源上线前）
+dotnet add package FrostUI
+```
+
+或从源码打包（离线 / 内网）：
+
+```powershell
 dotnet pack src/FrostUI/FrostUI.csproj -c Release -o artifacts
 dotnet add package FrostUI --source artifacts
 ```
@@ -155,6 +160,19 @@ python -m http.server 8080
 - [架构说明](docs/architecture.md)
 - [设计器手册](designer/README.md)
 - [零基础说明书](docs/FrostUI-Designer-零基础说明书.docx)
+
+## 发布
+
+```powershell
+# WPF → nuget.org
+$env:NUGET_API_KEY = "..."        # https://www.nuget.org/account/apikeys
+.\scripts\publish-nuget.ps1
+
+# Web → npm（包名 frostui-web）
+cd web; npm publish
+```
+
+也可以把 `NUGET_API_KEY` 加到 GitHub 仓库 Secrets，推送 `v*` tag 时由 `.github/workflows/publish-nuget.yml` 自动发布。
 
 ## License
 
