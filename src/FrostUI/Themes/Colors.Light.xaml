@@ -1,0 +1,176 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Typography -->
+    <FontFamily x:Key="UiFont">Segoe UI Variable Text, Microsoft YaHei UI, Segoe UI</FontFamily>
+    <FontFamily x:Key="DisplayFont">Segoe UI Variable Display, Microsoft YaHei UI, Segoe UI</FontFamily>
+    <FontFamily x:Key="IconFont">Segoe Fluent Icons, Segoe MDL2 Assets</FontFamily>
+    <FontFamily x:Key="MonoFont">Cascadia Mono, Consolas</FontFamily>
+
+    <!-- Text -->
+    <SolidColorBrush x:Key="TextPrimaryBrush" Color="#111827" />
+    <SolidColorBrush x:Key="TextSecondaryBrush" Color="#4F5D73" />
+    <SolidColorBrush x:Key="TextTertiaryBrush" Color="#7C8799" />
+    <SolidColorBrush x:Key="TextDisabledBrush" Color="#A2AAB8" />
+    <SolidColorBrush x:Key="TextOnAccentBrush" Color="#08101D" />
+
+    <!-- Window surfaces -->
+    <LinearGradientBrush x:Key="WindowSurfaceBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#8CF8FAFF" Offset="0" />
+        <GradientStop Color="#4DF4F7FD" Offset="0.55" />
+        <GradientStop Color="#73F2F6FC" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="FallbackWindowBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#FCF8FAFF" Offset="0" />
+        <GradientStop Color="#FFF1F5FC" Offset="0.6" />
+        <GradientStop Color="#FFF8FAFE" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="WindowEdgeBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#B3FFFFFF" Offset="0" />
+        <GradientStop Color="#4DFFFFFF" Offset="0.4" />
+        <GradientStop Color="#33FFFFFF" Offset="0.72" />
+        <GradientStop Color="#66FFFFFF" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="WindowOverlayBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#66FFFFFF" Offset="0" />
+        <GradientStop Color="#00FFFFFF" Offset="0.38" />
+        <GradientStop Color="#146F9CFF" Offset="0.8" />
+        <GradientStop Color="#00000000" Offset="1" />
+    </LinearGradientBrush>
+
+    <!-- Chrome -->
+    <SolidColorBrush x:Key="TitleBarBrush" Color="#52FFFFFF" />
+    <SolidColorBrush x:Key="TitleBarBorderBrush" Color="#22000000" />
+    <LinearGradientBrush x:Key="SidebarBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#66FFFFFF" Offset="0" />
+        <GradientStop Color="#3BFFFFFF" Offset="0.55" />
+        <GradientStop Color="#52FFFFFF" Offset="1" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="DividerBrush" Color="#16000000" />
+    <SolidColorBrush x:Key="CaptionButtonHoverBrush" Color="#12000000" />
+    <SolidColorBrush x:Key="CaptionButtonPressedBrush" Color="#1F000000" />
+    <SolidColorBrush x:Key="CloseButtonHoverBrush" Color="#E81123" />
+
+    <!-- Material -->
+    <LinearGradientBrush x:Key="CardGradientBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#A6FFFFFF" Offset="0" />
+        <GradientStop Color="#70FFFFFF" Offset="0.48" />
+        <GradientStop Color="#54FFFFFF" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="CardHoverGradientBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#C7FFFFFF" Offset="0" />
+        <GradientStop Color="#8CFFFFFF" Offset="0.5" />
+        <GradientStop Color="#70FFFFFF" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="CardSheenBrush" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Color="#00FFFFFF" Offset="0" />
+        <GradientStop Color="#CCFFFFFF" Offset="0.24" />
+        <GradientStop Color="#66FFFFFF" Offset="0.55" />
+        <GradientStop Color="#00FFFFFF" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="CardEdgeBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#D9FFFFFF" Offset="0" />
+        <GradientStop Color="#4DFFFFFF" Offset="0.4" />
+        <GradientStop Color="#33FFFFFF" Offset="0.7" />
+        <GradientStop Color="#80FFFFFF" Offset="1" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="CardBorderBrush" Color="#66FFFFFF" />
+    <SolidColorBrush x:Key="CardBorderStrongBrush" Color="#A6FFFFFF" />
+    <SolidColorBrush x:Key="CardShadowBrush" Color="#26000000" />
+    <LinearGradientBrush x:Key="HeroGradientBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#3384AEFF" Offset="0" />
+        <GradientStop Color="#1FC7A6FF" Offset="0.5" />
+        <GradientStop Color="#B3FFFFFF" Offset="1" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="InsetSurfaceBrush" Color="#66FFFFFF" />
+    <SolidColorBrush x:Key="InsetSurfaceStrongBrush" Color="#99FFFFFF" />
+    <SolidColorBrush x:Key="ChipBrush" Color="#8CFFFFFF" />
+    <SolidColorBrush x:Key="ChipBorderBrush" Color="#70FFFFFF" />
+    <SolidColorBrush x:Key="InputBrush" Color="#99FFFFFF" />
+    <SolidColorBrush x:Key="InputBorderBrush" Color="#3D000000" />
+    <SolidColorBrush x:Key="InputFocusBrush" Color="#E6FFFFFF" />
+    <SolidColorBrush x:Key="ToastBrush" Color="#F7FFFFFF" />
+    <SolidColorBrush x:Key="ToolTipBrush" Color="#F7FFFFFF" />
+    <SolidColorBrush x:Key="SelectionBrush" Color="#3384AEFF" />
+    <SolidColorBrush x:Key="ScrollThumbBrush" Color="#33000000" />
+    <SolidColorBrush x:Key="ScrollThumbHoverBrush" Color="#59000000" />
+    <SolidColorBrush x:Key="SkeletonBrush" Color="#33000000" />
+
+    <!-- Navigation -->
+    <SolidColorBrush x:Key="NavHoverBrush" Color="#0F000000" />
+    <SolidColorBrush x:Key="NavSelectedBrush" Color="#B3FFFFFF" />
+    <SolidColorBrush x:Key="NavSelectedBorderBrush" Color="#D9FFFFFF" />
+    <SolidColorBrush x:Key="NavGlyphBrush" Color="#6F7C91" />
+    <SolidColorBrush x:Key="NavGlyphSelectedBrush" Color="#1B2A45" />
+
+    <!-- Accent (ThemeManager replaces these at runtime) -->
+    <Color x:Key="AccentColor">#84AEFF</Color>
+    <SolidColorBrush x:Key="AccentBrush" Color="#84AEFF" />
+    <SolidColorBrush x:Key="AccentDeepBrush" Color="#5E82F5" />
+    <SolidColorBrush x:Key="AccentSoftBrush" Color="#2E84AEFF" />
+    <SolidColorBrush x:Key="TextSelectionBrush" Color="#FF84AEFF" />
+    <SolidColorBrush x:Key="AccentGlowBrush" Color="#5584AEFF" />
+    <SolidColorBrush x:Key="AccentTrackBrush" Color="#3384AEFF" />
+    <SolidColorBrush x:Key="AccentBorderBrush" Color="#4D84AEFF" />
+    <SolidColorBrush x:Key="AccentContrastBrush" Color="#07101F" />
+    <LinearGradientBrush x:Key="AccentGradientBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#8FB8FF" Offset="0" />
+        <GradientStop Color="#B79CFF" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="BrandGradientBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#7FA8FF" Offset="0" />
+        <GradientStop Color="#B68CFF" Offset="0.55" />
+        <GradientStop Color="#40CEBB" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="AvatarGradientBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#7AA7FF" Offset="0" />
+        <GradientStop Color="#C4A1FF" Offset="1" />
+    </LinearGradientBrush>
+
+    <!-- Status -->
+    <SolidColorBrush x:Key="SuccessBrush" Color="#0E9F82" />
+    <SolidColorBrush x:Key="SuccessSoftBrush" Color="#2614B8A6" />
+    <SolidColorBrush x:Key="WarningBrush" Color="#C47B12" />
+    <SolidColorBrush x:Key="WarningSoftBrush" Color="#26F3A712" />
+    <SolidColorBrush x:Key="DangerBrush" Color="#D8455E" />
+    <SolidColorBrush x:Key="DangerSoftBrush" Color="#26E85A73" />
+    <SolidColorBrush x:Key="InfoBrush" Color="#3E6FD6" />
+    <SolidColorBrush x:Key="InfoSoftBrush" Color="#263E6FD6" />
+
+    <!-- Ambient light -->
+    <RadialGradientBrush x:Key="AmbientBlueBrush" Center="0.5,0.5" GradientOrigin="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+        <GradientStop Color="#665B8FFF" Offset="0" />
+        <GradientStop Color="#265B8FFF" Offset="0.55" />
+        <GradientStop Color="#005B8FFF" Offset="1" />
+    </RadialGradientBrush>
+    <RadialGradientBrush x:Key="AmbientVioletBrush" Center="0.5,0.5" GradientOrigin="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+        <GradientStop Color="#52BB85FF" Offset="0" />
+        <GradientStop Color="#1ABB85FF" Offset="0.55" />
+        <GradientStop Color="#00BB85FF" Offset="1" />
+    </RadialGradientBrush>
+    <RadialGradientBrush x:Key="AmbientTealBrush" Center="0.5,0.5" GradientOrigin="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+        <GradientStop Color="#4D5FE3C9" Offset="0" />
+        <GradientStop Color="#155FE3C9" Offset="0.55" />
+        <GradientStop Color="#005FE3C9" Offset="1" />
+    </RadialGradientBrush>
+    <RadialGradientBrush x:Key="OrbBrush" Center="0.35,0.3" GradientOrigin="0.35,0.3" RadiusX="0.7" RadiusY="0.7">
+        <GradientStop Color="#E6B9D3FF" Offset="0" />
+        <GradientStop Color="#B384AEFF" Offset="0.36" />
+        <GradientStop Color="#595E82F5" Offset="0.68" />
+        <GradientStop Color="#005E82F5" Offset="1" />
+    </RadialGradientBrush>
+
+    <!-- Effects -->
+    <DropShadowEffect x:Key="CardShadowEffect" BlurRadius="28" ShadowDepth="7" Direction="270"
+                      Color="#66000000" Opacity="0.2" RenderingBias="Quality" />
+    <DropShadowEffect x:Key="FloatingShadowEffect" BlurRadius="36" ShadowDepth="16" Direction="270"
+                      Color="#66000000" Opacity="0.25" RenderingBias="Quality" />
+    <DropShadowEffect x:Key="SoftGlowEffect" BlurRadius="24" ShadowDepth="0"
+                      Color="#6684AEFF" Opacity="0.4" RenderingBias="Quality" />
+
+    <!-- Brushes shared by the built-in styles -->
+    <SolidColorBrush x:Key="TransparentBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="WhiteBrush" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="BlackBrush" Color="#000000" />
+
+</ResourceDictionary>

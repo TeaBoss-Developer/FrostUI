@@ -1,0 +1,50 @@
+<local:FrostWindow x:Class="FrostUI.Controls.FrostMessageBox"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:FrostUI.Controls"
+                    Title="FrostUI"
+                    Width="430" Height="228"
+                    MinWidth="380" MinHeight="200"
+                    WindowStartupLocation="CenterOwner"
+                    ShowInTaskbar="False"
+                    ResizeMode="NoResize"
+                    Backdrop="Acrylic"
+                    TintOpacity="0.34"
+                    Style="{StaticResource FrostWindowStyle}">
+    <local:FrostWindow.TitleBarContent>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <Border Background="{DynamicResource AccentSoftBrush}"
+                    BorderBrush="{DynamicResource AccentBorderBrush}"
+                    BorderThickness="1" CornerRadius="5" Padding="7,2">
+                <TextBlock Text="FROSTUI" FontFamily="{DynamicResource MonoFont}"
+                           FontSize="7" Foreground="{DynamicResource TextPrimaryBrush}" />
+            </Border>
+            <TextBlock x:Name="DialogKindText" Text="提示" FontSize="9.5" Margin="8,0,0,0"
+                       Foreground="{DynamicResource TextTertiaryBrush}" />
+        </StackPanel>
+    </local:FrostWindow.TitleBarContent>
+
+    <Grid Margin="22,16,22,18">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="TitleText" Text="提示"
+                   FontFamily="{DynamicResource DisplayFont}"
+                   FontSize="16" FontWeight="SemiBold"
+                   Foreground="{DynamicResource TextPrimaryBrush}" />
+
+        <TextBlock x:Name="MessageText" Grid.Row="1" Text=""
+                   Margin="0,8,0,14"
+                   FontSize="10.5"
+                   LineHeight="18"
+                   TextWrapping="Wrap"
+                   Foreground="{DynamicResource TextSecondaryBrush}" />
+
+        <StackPanel x:Name="ButtonsPanel" Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right" />
+    </Grid>
+</local:FrostWindow>

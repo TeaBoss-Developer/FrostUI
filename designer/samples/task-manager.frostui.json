@@ -1,0 +1,155 @@
+{
+  "name": "个人任务管理器",
+  "windowTitle": "FrostUI · 个人任务管理器",
+  "windowWidth": 1080,
+  "windowHeight": 700,
+  "backdrop": "acrylic",
+  "tintOpacity": 0.28,
+  "gridSize": 8,
+  "description": "一个可搜索、可筛选、可统计的个人任务管理器。",
+  "version": "1.0.0",
+  "company": "FrostUI",
+  "iconPath": "",
+  "accentColor": "#63E6BE",
+  "controls": [
+    {
+      "name": "标签_标题",
+      "kind": "label",
+      "x": 42,
+      "y": 30,
+      "width": 520,
+      "height": 42,
+      "text": "我的任务",
+      "fontSize": 28,
+      "isBold": true,
+      "isVisible": true,
+      "isEnabled": true
+    },
+    {
+      "name": "标签_副标题",
+      "kind": "label",
+      "x": 44,
+      "y": 76,
+      "width": 620,
+      "height": 30,
+      "text": "把今天要做的事情放在一个清晰的地方。",
+      "fontSize": 12,
+      "isVisible": true,
+      "isEnabled": true
+    },
+    {
+      "name": "标签_总计",
+      "kind": "label",
+      "x": 730,
+      "y": 42,
+      "width": 300,
+      "height": 32,
+      "text": "共 4 项",
+      "fontSize": 14,
+      "isBold": true,
+      "isVisible": true,
+      "isEnabled": true
+    },
+    {
+      "name": "搜索_任务",
+      "kind": "searchBox",
+      "x": 42,
+      "y": 132,
+      "width": 330,
+      "height": 38,
+      "text": "搜索任务…",
+      "fontSize": 12,
+      "scripts": {
+        "文本改变": "标签_状态.文本 = \"正在搜索：\" + 搜索_任务.文本",
+        "提交": "标签_状态.文本 = \"搜索提交：\" + 搜索_任务.文本"
+      }
+    },
+    {
+      "name": "下拉_筛选",
+      "kind": "comboBox",
+      "x": 390,
+      "y": 132,
+      "width": 180,
+      "height": 38,
+      "listItems": "全部\n今天\n进行中\n已完成",
+      "selectedItem": "全部",
+      "fontSize": 12,
+      "scripts": {
+        "选择改变": "标签_状态.文本 = \"筛选：\" + 下拉_筛选.选中项"
+      }
+    },
+    {
+      "name": "按钮_新增",
+      "kind": "button",
+      "x": 860,
+      "y": 132,
+      "width": 170,
+      "height": 38,
+      "text": "新增任务",
+      "fontSize": 12,
+      "accentColor": "#63E6BE",
+      "scripts": {
+        "点击": "标签_状态.文本 = \"新增任务：请在下方输入框填写任务\""
+      }
+    },
+    {
+      "name": "表格_任务",
+      "kind": "dataGrid",
+      "x": 42,
+      "y": 204,
+      "width": 988,
+      "height": 270,
+      "cornerRadius": 12,
+      "tableColumns": "任务\n状态\n优先级",
+      "listItems": "整理设计稿|进行中|高\n回复客户邮件|待开始|中\n发布组件库|待开始|高\n更新项目说明书|已完成|低",
+      "selectedItem": "整理设计稿",
+      "gridEditable": true,
+      "gridSortable": true,
+      "scripts": {
+        "行点击": "标签_状态.文本 = \"选中任务：\" + 表格_任务.选中项",
+        "单元格改变": "标签_状态.文本 = \"任务已更新\""
+      }
+    },
+    {
+      "name": "标签_状态",
+      "kind": "label",
+      "x": 42,
+      "y": 496,
+      "width": 650,
+      "height": 30,
+      "text": "准备就绪",
+      "fontSize": 12,
+      "isVisible": true,
+      "isEnabled": true
+    },
+    {
+      "name": "标签_提示",
+      "kind": "label",
+      "x": 42,
+      "y": 548,
+      "width": 650,
+      "height": 58,
+      "text": "提示：双击表格单元格可以编辑；点击表头可以排序。",
+      "fontSize": 11,
+      "toolTipText": "任务表支持排序和双击编辑。",
+      "contextMenuItems": "复制任务\n标记完成\n删除任务",
+      "scripts": {
+        "菜单点击": "标签_状态.文本 = \"右键操作：\" + 标签_提示.选中项"
+      }
+    },
+    {
+      "name": "通知_完成",
+      "kind": "infoBar",
+      "x": 730,
+      "y": 510,
+      "width": 300,
+      "height": 58,
+      "text": "今天已完成 1 项任务",
+      "severity": "Success",
+      "fontSize": 11,
+      "scripts": {
+        "关闭": "标签_状态.文本 = \"通知已关闭\""
+      }
+    }
+  ]
+}

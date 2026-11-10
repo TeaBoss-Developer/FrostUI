@@ -1,0 +1,152 @@
+<ui:FrostWindow x:Class="FrostUI.Designer.Views.ThemeColorWindow"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:ui="clr-namespace:FrostUI.Controls;assembly=FrostUI"
+                Title="主题色"
+                Width="500" Height="760"
+                MinWidth="440" MinHeight="720"
+                WindowStartupLocation="CenterOwner"
+                ShowInTaskbar="False"
+                Backdrop="Acrylic"
+                TintOpacity="0.30"
+                Style="{StaticResource FrostWindowStyle}">
+    <ui:FrostWindow.TitleBarContent>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <Border Background="{DynamicResource AccentSoftBrush}"
+                    BorderBrush="{DynamicResource AccentBorderBrush}"
+                    BorderThickness="1" CornerRadius="5" Padding="7,2">
+                <TextBlock Text="COLOR" FontFamily="{DynamicResource MonoFont}"
+                           FontSize="7" Foreground="{DynamicResource TextPrimaryBrush}" />
+            </Border>
+            <TextBlock x:Name="HeaderText" Text="主题色"
+                       FontSize="9.5" Margin="8,0,0,0"
+                       Foreground="{DynamicResource TextTertiaryBrush}" />
+        </StackPanel>
+    </ui:FrostWindow.TitleBarContent>
+
+    <Grid Margin="22,12,22,18">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <TextBlock Text="选择一个主题色，应用到整个界面或当前控件。"
+                       FontSize="10" TextWrapping="Wrap"
+                       Foreground="{DynamicResource TextSecondaryBrush}" />
+            <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                <Button Content="取消" Style="{StaticResource GhostButtonStyle}"
+                        MinWidth="64" Height="30" Padding="10,0"
+                        Click="Cancel_OnClick" />
+                <Button Content="应用" Style="{StaticResource PrimaryButtonStyle}"
+                        MinWidth="64" Height="30" Padding="10,0" Margin="7,0,0,0"
+                        Click="Apply_OnClick" />
+            </StackPanel>
+        </StackPanel>
+
+        <Border x:Name="PreviewCard" Grid.Row="1"
+                Margin="0,12,0,0" Padding="14"
+                CornerRadius="11"
+                Background="{DynamicResource InsetSurfaceBrush}"
+                BorderBrush="{DynamicResource AccentBorderBrush}"
+                BorderThickness="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Border x:Name="PreviewSwatch" Width="48" Height="48"
+                        CornerRadius="12"
+                        Background="{DynamicResource AccentBrush}" />
+                <StackPanel Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center">
+                    <TextBlock Text="主题色预览" FontSize="12" FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextPrimaryBrush}" />
+                    <TextBlock Text="按钮、选中状态、进度和描边会跟随变化"
+                               FontSize="8.5" Margin="0,3,0,0" TextWrapping="Wrap"
+                               Foreground="{DynamicResource TextTertiaryBrush}" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="2" Margin="0,14,0,5">
+            <TextBlock Text="预设" FontSize="8.5" FontWeight="SemiBold"
+                       Foreground="{DynamicResource TextSecondaryBrush}" />
+            <Button Content="保存当前色" Style="{StaticResource GhostButtonStyle}"
+                    HorizontalAlignment="Right" Height="24" MinWidth="0"
+                    Padding="8,0" FontSize="8"
+                    Click="SavePreset_OnClick"
+                    ToolTip="把当前颜色加入项目自定义预设" />
+        </Grid>
+        <WrapPanel x:Name="PresetPanel" Grid.Row="3" />
+
+        <Grid Grid.Row="4" Margin="0,14,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="18" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="38" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="28" />
+                <RowDefinition Height="28" />
+                <RowDefinition Height="28" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="R" VerticalAlignment="Center" FontSize="9"
+                       Foreground="{DynamicResource TextSecondaryBrush}" />
+            <Slider x:Name="RedSlider" Grid.Column="1" Minimum="0" Maximum="255"
+                    Style="{StaticResource GlassSliderStyle}"
+                    ValueChanged="RgbSlider_OnValueChanged" />
+            <TextBlock x:Name="RedValue" Grid.Column="2" Text="132"
+                       HorizontalAlignment="Right" VerticalAlignment="Center"
+                       FontFamily="{DynamicResource MonoFont}" FontSize="8.5"
+                       Foreground="{DynamicResource AccentBrush}" />
+            <TextBlock Grid.Row="1" Text="G" VerticalAlignment="Center" FontSize="9"
+                       Foreground="{DynamicResource TextSecondaryBrush}" />
+            <Slider x:Name="GreenSlider" Grid.Row="1" Grid.Column="1" Minimum="0" Maximum="255"
+                    Style="{StaticResource GlassSliderStyle}"
+                    ValueChanged="RgbSlider_OnValueChanged" />
+            <TextBlock x:Name="GreenValue" Grid.Row="1" Grid.Column="2" Text="174"
+                       HorizontalAlignment="Right" VerticalAlignment="Center"
+                       FontFamily="{DynamicResource MonoFont}" FontSize="8.5"
+                       Foreground="{DynamicResource AccentBrush}" />
+            <TextBlock Grid.Row="2" Text="B" VerticalAlignment="Center" FontSize="9"
+                       Foreground="{DynamicResource TextSecondaryBrush}" />
+            <Slider x:Name="BlueSlider" Grid.Row="2" Grid.Column="1" Minimum="0" Maximum="255"
+                    Style="{StaticResource GlassSliderStyle}"
+                    ValueChanged="RgbSlider_OnValueChanged" />
+            <TextBlock x:Name="BlueValue" Grid.Row="2" Grid.Column="2" Text="255"
+                       HorizontalAlignment="Right" VerticalAlignment="Center"
+                       FontFamily="{DynamicResource MonoFont}" FontSize="8.5"
+                       Foreground="{DynamicResource AccentBrush}" />
+        </Grid>
+
+        <Grid Grid.Row="5" Margin="0,12,0,0" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="8" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <TextBlock Text="十六进制" FontSize="8.5"
+                           Foreground="{DynamicResource TextSecondaryBrush}" />
+                <TextBox x:Name="HexBox" Style="{StaticResource GlassTextBoxStyle}"
+                         Height="34" Margin="0,4,0,0"
+                         TextChanged="HexBox_OnTextChanged"
+                         ToolTip="例如 #84AEFF" />
+            </StackPanel>
+            <Border Grid.Column="2" Width="44" Height="44"
+                    Margin="0,18,0,0" CornerRadius="9"
+                    x:Name="HexPreview"
+                    BorderBrush="{DynamicResource CardBorderBrush}"
+                    BorderThickness="1" />
+        </Grid>
+
+        <TextBlock x:Name="HintText" Grid.Row="6" Margin="0,10,0,0"
+                   FontSize="8" TextWrapping="Wrap"
+                   Foreground="{DynamicResource TextTertiaryBrush}" />
+    </Grid>
+</ui:FrostWindow>

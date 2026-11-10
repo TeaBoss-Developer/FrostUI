@@ -1,0 +1,36 @@
+{
+  "name": "frostui-web",
+  "version": "0.1.0",
+  "description": "FrostUI for the Web — a frosted-glass UI kit with dual themes, runtime accents and real backdrop blur.",
+  "license": "MIT",
+  "author": "TeaBoss <tea_boss@outlook.com>",
+  "homepage": "https://github.com/TeaBoss-Developer/FrostUI",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TeaBoss-Developer/FrostUI.git",
+    "directory": "web"
+  },
+  "bugs": {
+    "url": "https://github.com/TeaBoss-Developer/FrostUI/issues"
+  },
+  "main": "frostui.js",
+  "style": "frostui.css",
+  "files": [
+    "frostui.css",
+    "frostui.js",
+    "README.md"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "keywords": [
+    "ui",
+    "css",
+    "glassmorphism",
+    "acrylic",
+    "frosted-glass",
+    "design-system",
+    "wpf",
+    "frostui"
+  ]
+}

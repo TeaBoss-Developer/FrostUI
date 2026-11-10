@@ -1,0 +1,183 @@
+{
+  "name": "布局控件示例",
+  "windowTitle": "FrostUI · 布局控件",
+  "windowWidth": 1040,
+  "windowHeight": 620,
+  "backdrop": "acrylic",
+  "tintOpacity": 0.3,
+  "gridSize": 8,
+  "description": "标签页、折叠面板、分栏、菜单、通知条、悬停提示和右键菜单示例。",
+  "version": "1.0.0",
+  "company": "",
+  "iconPath": "",
+  "controls": [
+    {
+      "name": "标签页_主",
+      "kind": "tabs",
+      "x": 40,
+      "y": 28,
+      "width": 520,
+      "height": 290,
+      "text": "标签页",
+      "fontSize": 12,
+      "listItems": "常规\n高级\n关于",
+      "selectedIndex": 0,
+      "cornerRadius": 12,
+      "scripts": {
+        "标签切换": "标签_结果.文本 = \"标签页：\" + 标签页_主.选中项"
+      }
+    },
+    {
+      "name": "标签_常规",
+      "kind": "label",
+      "x": 20,
+      "y": 20,
+      "width": 470,
+      "height": 48,
+      "text": "常规标签页：放最常用的设置。",
+      "fontSize": 14,
+      "parentName": "标签页_主",
+      "tabIndex": 1
+    },
+    {
+      "name": "按钮_高级",
+      "kind": "button",
+      "x": 20,
+      "y": 30,
+      "width": 160,
+      "height": 38,
+      "text": "高级操作",
+      "fontSize": 13,
+      "parentName": "标签页_主",
+      "tabIndex": 2,
+      "scripts": {
+        "点击": "标签_结果.文本 = \"高级标签页里的按钮被点击\""
+      }
+    },
+    {
+      "name": "标签_关于",
+      "kind": "label",
+      "x": 20,
+      "y": 20,
+      "width": 470,
+      "height": 60,
+      "text": "关于：Tabs 的子控件按 tabIndex 分配到不同标签页。",
+      "fontSize": 13,
+      "parentName": "标签页_主",
+      "tabIndex": 3
+    },
+    {
+      "name": "折叠_设置",
+      "kind": "expander",
+      "x": 40,
+      "y": 340,
+      "width": 420,
+      "height": 180,
+      "text": "高级设置",
+      "fontSize": 13,
+      "isOn": true,
+      "cornerRadius": 12,
+      "scripts": {
+        "展开改变": "标签_结果.文本 = \"折叠面板：\" + 文本(折叠_设置.开启)"
+      }
+    },
+    {
+      "name": "标签_折叠内容",
+      "kind": "label",
+      "x": 16,
+      "y": 16,
+      "width": 340,
+      "height": 40,
+      "text": "这里的内容会随折叠面板展开 / 收起。",
+      "fontSize": 12,
+      "parentName": "折叠_设置"
+    },
+    {
+      "name": "分栏_主",
+      "kind": "splitView",
+      "x": 590,
+      "y": 28,
+      "width": 410,
+      "height": 290,
+      "cornerRadius": 12
+    },
+    {
+      "name": "标签_左栏",
+      "kind": "label",
+      "x": 18,
+      "y": 18,
+      "width": 160,
+      "height": 50,
+      "text": "左栏\n拖中间分隔条",
+      "fontSize": 12,
+      "parentName": "分栏_主",
+      "paneIndex": 0
+    },
+    {
+      "name": "标签_右栏",
+      "kind": "label",
+      "x": 18,
+      "y": 18,
+      "width": 160,
+      "height": 50,
+      "text": "右栏\n内容",
+      "fontSize": 12,
+      "parentName": "分栏_主",
+      "paneIndex": 1
+    },
+    {
+      "name": "菜单_主",
+      "kind": "menu",
+      "x": 590,
+      "y": 340,
+      "width": 320,
+      "height": 42,
+      "listItems": "文件\n编辑\n帮助",
+      "selectedItem": "文件",
+      "fontSize": 11,
+      "scripts": {
+        "菜单点击": "标签_结果.文本 = \"菜单：\" + 菜单_主.选中项"
+      }
+    },
+    {
+      "name": "通知_示例",
+      "kind": "infoBar",
+      "x": 590,
+      "y": 400,
+      "width": 360,
+      "height": 54,
+      "text": "这是一条 Warning 通知，可以关闭。",
+      "severity": "Warning",
+      "fontSize": 11,
+      "scripts": {
+        "关闭": "标签_结果.文本 = \"通知条已关闭\""
+      }
+    },
+    {
+      "name": "标签_提示",
+      "kind": "label",
+      "x": 590,
+      "y": 470,
+      "width": 320,
+      "height": 38,
+      "text": "把鼠标移到这行字：有悬停提示；右键：有菜单。",
+      "fontSize": 11,
+      "toolTipText": "这是悬停提示文本。",
+      "contextMenuItems": "复制\n粘贴\n删除",
+      "scripts": {
+        "菜单点击": "标签_结果.文本 = \"右键菜单：\" + 标签_提示.选中项"
+      }
+    },
+    {
+      "name": "标签_结果",
+      "kind": "label",
+      "x": 40,
+      "y": 550,
+      "width": 960,
+      "height": 40,
+      "text": "操作上面任意控件，结果显示在这里。",
+      "fontSize": 13,
+      "isBold": true
+    }
+  ]
+}

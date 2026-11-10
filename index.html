@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-f-theme="dark" data-f-accent="azure">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FrostUI — 毛玻璃 UI 框架 · WPF &amp; Web</title>
+<meta name="description" content="FrostUI 是一套毛玻璃 UI 框架：WPF 真实 DWM 亚克力窗口，加上零依赖的 Web 玻璃组件库。双主题、5 套强调色、运行时玻璃浓度。">
+<meta name="author" content="TeaBoss">
+<meta name="theme-color" content="#070A12">
+<meta property="og:title" content="FrostUI — 毛玻璃 UI 框架 · WPF & Web">
+<meta property="og:description" content="把光，留在界面里。WPF 真亚克力 + Web 玻璃组件库。">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%238FB8FF'/%3E%3Cstop offset='1' stop-color='%23B79CFF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='9' fill='%230B101B'/%3E%3Cg stroke='url(%23g)' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M16 7v18M8.2 11.5l15.6 9M23.8 11.5l-15.6 9'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="stylesheet" href="web/frostui.css">
+<link rel="stylesheet" href="site/site.css">
+<script src="web/frostui.js" defer></script>
+<script src="site/site.js" defer></script>
+</head>
+<body class="f-page site">
+
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<svg class="sprite" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+  <symbol id="i-snow" viewBox="0 0 24 24"><path d="M12 3v18M4.2 7.5l15.6 9M19.8 7.5l-15.6 9"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4.5 1.3-4.5-2.3-6.3-2.8M15 21v-3.6a3.2 3.2 0 0 0-.9-2.5c3-.3 6.1-1.5 6.1-6.6a5.1 5.1 0 0 0-1.4-3.5 4.7 4.7 0 0 0-.1-3.5s-1.1-.3-3.7 1.4a12.6 12.6 0 0 0-6.6 0C5.9.5 4.8.8 4.8.8a4.7 4.7 0 0 0-.1 3.5A5.1 5.1 0 0 0 3.3 7.8c0 5.1 3.1 6.3 6.1 6.6a3.2 3.2 0 0 0-.9 2.5V21"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-external" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6M10 14L21 3"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></symbol>
+  <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1.5 0 2-1.2 1.4-2.3-.6-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4A9 9 0 0 0 12 3z"/><circle cx="8" cy="10" r="1.2"/><circle cx="12" cy="7.5" r="1.2"/><circle cx="16" cy="10" r="1.2"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="10" y="10" width="4" height="4"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.4z"/><path d="M18.5 16.5l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></symbol>
+  <symbol id="i-window" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></symbol>
+  <symbol id="i-a11y" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><path d="M4 9h16M12 8v6M8 21l4-7 4 7"/></symbol>
+</svg>
+
+<div class="f-ambient" aria-hidden="true">
+  <span class="f-orb f-orb--1"></span>
+  <span class="f-orb f-orb--2"></span>
+  <span class="f-orb f-orb--3"></span>
+</div>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="brand" href="#top" aria-label="FrostUI 首页">
+      <span class="brand__mark"><svg><use href="#i-snow"/></svg></span>
+      <span class="brand__text">
+        <b>FrostUI</b>
+        <small>GLASS UI KIT · 0.1.0</small>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="站点导航">
+      <a href="#features">特性</a>
+      <a href="#start">快速开始</a>
+      <a href="#components">组件</a>
+      <a href="#theming">主题</a>
+      <a href="#wpf">WPF</a>
+      <a href="#docs">文档</a>
+    </nav>
+    <div class="site-actions">
+      <a class="f-btn f-btn--icon f-btn--ghost" href="https://github.com/TeaBoss-Developer/FrostUI" target="_blank" rel="noopener" aria-label="GitHub 仓库">
+        <svg width="17" height="17"><use href="#i-github"/></svg>
+      </a>
+      <button class="f-btn f-btn--icon f-btn--ghost" type="button" data-f-theme-toggle aria-label="切换深色 / 浅色" title="切换深色 / 浅色">
+        <svg class="icon-sun" width="17" height="17"><use href="#i-sun"/></svg>
+        <svg class="icon-moon" width="17" height="17"><use href="#i-moon"/></svg>
+      </button>
+      <a class="f-btn f-btn--primary f-btn--sm" href="#start">开始使用</a>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="site-main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <div class="f-container">
+      <div class="hero__grid">
+        <div>
+          <p class="section__eyebrow">FROSTUI · GLASS UI KIT · MIT</p>
+          <h1>把光，<br>留在<span class="f-grad-text">界面里</span>。</h1>
+          <p class="hero__lede">
+            FrostUI 把 DWM 亚克力、玻璃材质与可复用控件带进 WPF，也把同一套设计令牌带进 Web。
+            双主题、五套强调色、运行时玻璃浓度 —— 一套语言，两种平台。
+          </p>
+
+          <div class="install">
+            <code id="snip-install">npm i frostui-web</code>
+            <button class="f-btn f-btn--icon f-btn--ghost" type="button" data-f-copy="#snip-install" aria-label="复制安装命令">
+              <svg width="15" height="15"><use href="#i-copy"/></svg>
+            </button>
+          </div>
+
+          <div class="hero__actions f-row">
+            <a class="f-btn f-btn--primary f-btn--lg" href="#start">快速开始 <svg width="16" height="16"><use href="#i-arrow"/></svg></a>
+            <a class="f-btn f-btn--lg" href="https://github.com/TeaBoss-Developer/FrostUI" target="_blank" rel="noopener">
+              <svg width="16" height="16"><use href="#i-github"/></svg> GitHub
+            </a>
+          </div>
+
+          <div class="hero__meta">
+            <span class="f-chip f-chip--sm">MIT License</span>
+            <span class="f-chip f-chip--sm">Web · 零依赖</span>
+            <span class="f-chip f-chip--sm">WPF · .NET 9</span>
+            <span class="f-chip f-chip--sm f-chip--accent"><i class="f-chip__dot"></i>v0.1.0</span>
+          </div>
+        </div>
+
+        <div class="showcase" aria-hidden="true">
+          <div class="showcase__head">
+            <span class="f-mono">FROST / MATERIAL</span>
+            <span class="f-pill f-pill--live">LIVE</span>
+          </div>
+          <div class="showcase__stage">
+            <span class="showcase__orb"></span>
+            <div class="pane pane--back"></div>
+            <div class="pane pane--mid"></div>
+            <div class="pane pane--front">
+              <span class="pane__label">FROST</span>
+              <span class="pane__sub">MATERIAL / ACRYLIC — 01</span>
+              <span class="pane__line"></span>
+              <span class="pane__meta">DWM · BACKDROP-FILTER</span>
+            </div>
+            <span class="showcase__tag showcase__tag--tl">BLUR 24 PX</span>
+            <span class="showcase__tag showcase__tag--br">60 FPS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+  <section class="section" id="features">
+    <div class="f-container">
+      <div class="section__head">
+        <p class="section__eyebrow">WHY FROSTUI</p>
+        <h2>玻璃，也可以是<span class="f-grad-text">工程</span>。</h2>
+        <p class="section__lede">不是一张模糊截图，而是真实的合成材质、可切换的令牌和一组能直接落地的控件。</p>
+      </div>
+      <div class="features">
+        <article class="f-card f-card--hover feature">
+          <span class="feature__icon"><svg><use href="#i-layers"/></svg></span>
+          <h3>真实的玻璃材质</h3>
+          <p>Web 端使用 <code class="f-mono">backdrop-filter</code> 实时采样背景；WPF 端直接调用 DWM 的 Acrylic / Mica，不是预渲染图片。</p>
+        </article>
+        <article class="f-card f-card--hover feature">
+          <span class="feature__icon"><svg><use href="#i-palette"/></svg></span>
+          <h3>双主题 × 五强调色</h3>
+          <p>深色 / 浅色随时切换，强调色实时重建按钮、开关、图表与焦点描边，所有偏好自动记住。</p>
+        </article>
+        <article class="f-card f-card--hover feature">
+          <span class="feature__icon"><svg><use href="#i-zap"/></svg></span>
+          <h3>零依赖 · 零构建</h3>
+          <p>一个 CSS、一个 JS，直接放进任何页面。没有打包器、没有运行时框架，也不会和你现有的技术栈打架。</p>
+        </article>
+        <article class="f-card f-card--hover feature">
+          <span class="feature__icon"><svg><use href="#i-window"/></svg></span>
+          <h3>一套令牌，两种平台</h3>
+          <p>颜色、圆角、模糊与间距在 WPF 和 Web 之间一一对应，桌面端与网页端看起来是同一个产品。</p>
+        </article>
+        <article class="f-card f-card--hover feature">
+          <span class="feature__icon"><svg><use href="#i-a11y"/></svg></span>
+          <h3>默认可用</h3>
+          <p>可见焦点环、语义化状态、<code class="f-mono">prefers-reduced-motion</code> 降级、无 <code class="f-mono">backdrop-filter</code> 时的回退表面。</p>
+        </article>
+        <article class="f-card f-card--hover feature">
+          <span class="feature__icon"><svg><use href="#i-cpu"/></svg></span>
+          <h3>WPF 原生控件</h3>
+          <p>FrostWindow、GlassCard、环形进度、迷你趋势图、开关与消息框，全部是普通 WPF 代码，可读、可改、可二次封装。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUICK START ============ -->
+  <section class="section" id="start">
+    <div class="f-container">
+      <div class="section__head">
+        <p class="section__eyebrow">GET STARTED</p>
+        <h2>两分钟，<span class="f-grad-text">接进来</span>。</h2>
+        <p class="section__lede">Web 直接引用文件；WPF 打包成本地 NuGet 包，或直接把项目引用加进解决方案。</p>
+      </div>
+
+      <div class="start-grid">
+        <article class="f-card code-card">
+          <div class="code-card__head">
+            <span class="code-card__title"><span class="f-pill f-pill--accent">WEB</span> 引入样式与脚本</span>
+            <button class="f-btn f-btn--icon f-btn--ghost" type="button" data-f-copy="#code-web" aria-label="复制 Web 代码">
+              <svg width="15" height="15"><use href="#i-copy"/></svg>
+            </button>
+          </div>
+          <pre class="f-code"><code id="code-web">&lt;link rel="stylesheet" href="web/frostui.css"&gt;
+&lt;script src="web/frostui.js" defer&gt;&lt;/script&gt;
+
+&lt;body class="f-page"&gt;
+  &lt;a class="f-btn f-btn--primary"&gt;开始使用&lt;/a&gt;
+&lt;/body&gt;</code></pre>
+        </article>
+
+        <article class="f-card code-card">
+          <div class="code-card__head">
+            <span class="code-card__title"><span class="f-pill f-pill--accent">WPF</span> 打包并引用</span>
+            <button class="f-btn f-btn--icon f-btn--ghost" type="button" data-f-copy="#code-wpf" aria-label="复制 WPF 代码">
+              <svg width="15" height="15"><use href="#i-copy"/></svg>
+            </button>
+          </div>
+          <pre class="f-code"><code id="code-wpf">dotnet pack src/FrostUI/FrostUI.csproj -c Release -o artifacts
+dotnet add package FrostUI --source artifacts
+
+&lt;!-- App.xaml --&gt;
+&lt;ResourceDictionary Source=
+  "pack://application:,,,/FrostUI;component/Themes/Controls.xaml" /&gt;</code></pre>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMPONENTS ============ -->
+  <section class="section" id="components">
+    <div class="f-container">
+      <div class="section__head">
+        <p class="section__eyebrow">COMPONENTS · 12</p>
+        <h2>控件，也可以有<span class="f-grad-text">呼吸感</span>。</h2>
+        <p class="section__lede">下面所有示例都是真实组件，点击右上角即可复制代码。想改样式？覆盖 <code class="f-mono">--f-*</code> 令牌就够了。</p>
+      </div>
+
+      <!-- buttons -->
+      <article class="f-card demo">
+        <div class="demo__head">
+          <span class="demo__name">按钮 <span>BUTTONS</span></span>
+          <button class="f-btn f-btn--icon f-btn--ghost" type="button" data-f-copy="#code-buttons" aria-label="复制按钮代码">
+            <svg width="15" height="15"><use href="#i-copy"/></svg>
+          </button>
+        </div>
+        <div class="demo__preview">
+          <button class="f-btn f-btn--primary" type="button">主要操作</button>
+          <button class="f-btn" type="button">次要操作</button>
+          <button class="f-btn f-btn--ghost" type="button">Ghost</button>
+          <button class="f-btn f-btn--danger" type="button">危险操作</button>
+          <button class="f-btn f-btn--icon" type="button" aria-label="更多"><svg width="16" height="16"><use href="#i-spark"/></svg></button>
+          <button class="f-btn f-btn--sm" type="button">小号</button>
+          <button class="f-btn f-btn--primary f-btn--lg" type="button">大号按钮</button>
+        </div>
+        <div class="demo__code">
+          <pre class="f-code"><code id="code-buttons">&lt;button class="f-btn f-btn--primary"&gt;主要操作&lt;/button&gt;
+&lt;button class="f-btn"&gt;次要操作&lt;/button&gt;
+&lt;button class="f-btn f-btn--ghost"&gt;Ghost&lt;/button&gt;
+&lt;button class="f-btn f-btn--danger"&gt;危险操作&lt;/button&gt;
+&lt;button class="f-btn f-btn--primary f-btn--lg"&gt;大号按钮&lt;/button&gt;</code></pre>
+        </div>
+      </article>
+
+      <div class="demo-grid">
+        <!-- card -->
+        <article class="f-card demo">
+          <div class="demo__head">
+            <span class="demo__name">玻璃卡片 <span>CARD</span></span>
+            <button class="f-btn f-btn--icon f-btn--ghost" type="button" data-f-copy="#code-card" aria-label="复制卡片代码">
+              <svg width="15" height="15"><use href="#i-copy"/></svg>
+            </button>
+          </div>
+          <div class="demo__preview demo__preview--stack">
+            <div class="f-card" style="padding:18px">
+              <div class="f-card__head">
+                <span class="f-badge"><svg width="18" height="18"><use href="#i-layers"/></svg></span>
+                <div>
+                  <h3 class="f-card__title">玻璃卡片</h3>
+                  <p class="f-card__sub">GLASS CARD</p>
+                </div>
+                <span class="f-pill f-pill--live" style="margin-left:auto">LIVE</span>
+              </div>
+              <p class="f-muted" style="font-size:12.5px">渐变玻璃、细描边、内高光，鼠标移入时有柔和的追光。</p>
+            </div>
+          </div>
+          <div class="demo__code">
+            <pre class="f-code"><code id="code-card">&lt;div class="f-card"&gt;
+  &lt;div class="f-card__head"&gt;
+    &lt;span class="f-badge"&gt;…&lt;/span&gt;
+    &lt;h3 class="f-card__title"&gt;玻璃卡片&lt;/h3&gt;
+  &lt;/div&gt;
+  &lt;p class="f-muted"&gt;内容&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </article>
+
+        <!-- controls -->
+        <article class="f-card demo">
+          <div class="demo__head">
+            <span class="demo__name">表单 <span>CONTROLS</span></span>
+            <button class="f-btn f-btn--icon f-btn--ghost" type="button" data-f-copy="#code-controls" aria-label="复制表单代码">
+              <svg width="15" height="15"><use href="#i-copy"/></svg>
+            </button>
+          </div>
+          <div class="demo__preview demo__preview--stack">
+            <input class="f-input" type="text" value="FrostUI" aria-label="项目名称">
+            <div class="f-row" style="justify-content:space-between">
+              <span class="f-muted" style="font-size:12.5px">实时预览</span>
+              <input class="f-switch" type="checkbox" checked aria-label="实时预览">
+            </div>
+            <input class="f-range" type="range" min="0" max="100" value="68" aria-label="强度">
+            <div class="f-segmented" role="group" aria-label="密度">
+              <button type="button" aria-pressed="true">紧凑</button>
+              <button type="button" aria-pressed="false">平衡</button>
+              <button type="button" aria-pressed="false">舒适</button>
+            </div>
+          </div>
+          <div class="demo__code">
+            <pre class="f-code"><code id="code-controls">&lt;input class="f-input" type="text"&gt;
+&lt;input class="f-switch" type="checkbox" checked&gt;
+&lt;input class="f-range" type="range" min="0" max="100"&gt;
+&lt;div class="f-segmented"&gt;…&lt;/div&gt;</code></pre>
+          </div>
+        </article>
+
+        <!-- chips -->
+        <article class="f-card demo">
+          <div class="demo__head">
+            <span class="demo__name">标签 <span>CHIPS &amp; PILLS</span></span>
+            <button class="f-btn f-btn--icon f-btn--ghost" type="button" data-f-copy="#code-chips" aria-label="复制标签代码">
+              <svg width="15" height="15"><use href="#i-copy"/></svg>
+            </button>
+          </div>
+          <div class="demo__preview">
+            <span class="f-chip">默认标签</span>
+            <span class="f-chip f-chip--accent"><i class="f-chip__dot"></i>已连接</span>
+            <span class="f-pill f-pill--live">LIVE</span>
+            <span class="f-pill">ACRYLIC</span>
+            <span class="f-chip f-chip--sm">SMALL</span>
+          </div>
+          <div class="demo__code">
+            <pre class="f-code"><code id="code-chips">&lt;span class="f-chip"&gt;默认标签&lt;/span&gt;
+&lt;span class="f-chip f-chip--accent"&gt;
+  &lt;i class="f-chip__dot"&gt;&lt;/i&gt;已连接
+&lt;/span&gt;
+&lt;span class="f-pill f-pill--live"&gt;LIVE&lt;/span&gt;</code></pre>
+          </div>
+        </article>
+
+        <!-- data -->
+        <article class="f-card demo">
+          <div class="demo__head">
+            <span class="demo__name">数据 <span>DATA</span></span>
+            <button class="f-btn f-btn--icon f-btn--ghost" type="button" data-f-copy="#code-data" aria-label="复制数据代码">
+              <svg width="15" height="15"><use href="#i-copy"/></svg>
+            </button>
+          </div>
+          <div class="demo__preview demo__preview--grid">
+            <div class="f-stat">
+              <span class="f-stat__label">FRAME RATE</span>
+              <div class="f-stat__value">60<span style="font-size:14px">fps</span></div>
+              <span class="f-stat__note">16.4 ms</span>
+            </div>
+            <div class="f-stat">
+              <span class="f-stat__label">MEMORY</span>
+              <div class="f-stat__value">134<span style="font-size:14px">MB</span></div>
+              <span class="f-stat__note">本次会话</span>
+            </div>
+          </div>
+          <div class="demo__code">
+            <pre class="f-code"><code id="code-data">&lt;div class="f-stat"&gt;
+  &lt;span class="f-stat__label"&gt;FRAME RATE&lt;/span&gt;
+  &lt;div class="f-stat__value"&gt;60&lt;/div&gt;
+  &lt;span class="f-stat__note"&gt;16.4 ms&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </article>
+
+        <!-- nav -->
+        <article class="f-card demo">
+          <div class="demo__head">
+            <span class="demo__name">导航 <span>NAV</span></span>
+            <button class="f-btn f-btn--icon f-btn--ghost" type="button" data-f-copy="#code-nav" aria-label="复制导航代码">
+              <svg width="15" height="15"><use href="#i-copy"/></svg>
+            </button>
+          </div>
+          <div class="demo__preview demo__preview--stack">
+            <nav class="f-nav" aria-label="示例导航">
+              <a class="f-nav__item is-active" href="#components"><svg width="16" height="16"><use href="#i-layers"/></svg>概览</a>
+              <a class="f-nav__item" href="#components"><svg width="16" height="16"><use href="#i-palette"/></svg>外观</a>
+              <a class="f-nav__item" href="#components"><svg width="16" height="16"><use href="#i-shield"/></svg>安全</a>
+            </nav>
+          </div>
+          <div class="demo__code">
+            <pre class="f-code"><code id="code-nav">&lt;nav class="f-nav"&gt;
+  &lt;a class="f-nav__item is-active" href="#"&gt;概览&lt;/a&gt;
+  &lt;a class="f-nav__item" href="#"&gt;外观&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THEMING ============ -->
+  <section class="section" id="theming">
+    <div class="f-container">
+      <div class="section__head">
+        <p class="section__eyebrow">THEMING</p>
+        <h2>同一块玻璃，<span class="f-grad-text">换一种光</span>。</h2>
+        <p class="section__lede">下面的控制是真实组件：切换会立刻作用到整页，并写入 localStorage。</p>
+      </div>
+
+      <div class="f-card playground">
+        <div>
+          <div class="control">
+            <div>
+              <div class="control__label">强调色</div>
+              <div class="control__hint">Accent</div>
+            </div>
+            <div class="swatches" role="group" aria-label="强调色">
+              <button class="swatch" type="button" data-f-accent="azure" style="--s:#84AEFF" aria-label="极光蓝" aria-pressed="true"></button>
+              <button class="swatch" type="button" data-f-accent="mint" style="--s:#63E6BE" aria-label="薄荷绿" aria-pressed="false"></button>
+              <button class="swatch" type="button" data-f-accent="violet" style="--s:#B79CFF" aria-label="星紫" aria-pressed="false"></button>
+              <button class="swatch" type="button" data-f-accent="sakura" style="--s:#FF9EB5" aria-label="樱粉" aria-pressed="false"></button>
+              <button class="swatch" type="button" data-f-accent="amber" style="--s:#FFC46B" aria-label="琥珀" aria-pressed="false"></button>
+            </div>
+          </div>
+
+          <div class="control">
+            <div>
+              <div class="control__label">外观</div>
+              <div class="control__hint">Theme</div>
+            </div>
+            <div class="f-segmented">
+              <button type="button" data-f-theme-set="dark">深色</button>
+              <button type="button" data-f-theme-set="light">浅色</button>
+            </div>
+          </div>
+
+          <div class="control">
+            <div>
+              <div class="control__label">玻璃浓度</div>
+              <div class="control__hint">Blur radius</div>
+            </div>
+            <div class="f-row" style="flex:1;justify-content:flex-end">
+              <input class="f-range" type="range" min="0" max="48" value="24" data-f-blur style="max-width:180px" aria-label="玻璃模糊半径">
+              <output class="f-mono f-dim" style="font-size:11px;width:44px;text-align:right" data-f-blur-out>24 px</output>
+            </div>
+          </div>
+
+          <div class="control">
+            <div>
+              <div class="control__label">背景光斑</div>
+              <div class="control__hint">Ambient orbs</div>
+            </div>
+            <input class="f-switch" type="checkbox" checked data-f-ambient-toggle aria-label="背景光斑">
+          </div>
+
+          <div class="control">
+            <div>
+              <div class="control__label">动效</div>
+              <div class="control__hint">Motion</div>
+            </div>
+            <input class="f-switch" type="checkbox" checked data-f-motion-toggle aria-label="动效">
+          </div>
+        </div>
+
+        <div class="playground__preview">
+          <div class="mini-card">
+            <div class="mini-card__title">实时预览</div>
+            <div class="mini-card__sub">LIVE MATERIAL PREVIEW</div>
+            <div class="mini-card__row"><span>窗口材质</span><b class="f-mono">Acrylic</b></div>
+            <div class="mini-card__row"><span>强调色</span><b class="f-mono" id="accentName">Azure</b></div>
+            <div class="mini-card__row"><span>主题</span><b class="f-mono" id="themeName">Dark</b></div>
+            <div class="f-row" style="margin-top:16px">
+              <button class="f-btn f-btn--primary f-btn--sm" type="button">主要操作</button>
+              <button class="f-btn f-btn--sm" type="button">次要</button>
+            </div>
+          </div>
+          <p class="f-hint">所有偏好保存在 localStorage，刷新后保持。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WPF ============ -->
+  <section class="section" id="wpf">
+    <div class="f-container">
+      <div class="section__head">
+        <p class="section__eyebrow">FROSTUI FOR WPF</p>
+        <h2>桌面端的<span class="f-grad-text">真亚克力</span>。</h2>
+        <p class="section__lede">FrostWindow 直接调用 DWM：Acrylic、Mica、Mica Alt、Blur 与无材质回退。没有 WinUI 依赖，纯 WPF + .NET 9。</p>
+      </div>
+
+      <div class="wpf-grid">
+        <figure class="f-card shot" style="margin:0">
+          <img src="screenshots/overview.png" alt="FrostUI WPF Demo 概览界面" loading="lazy">
+          <figcaption class="shot__caption"><span>FrostUI.Demo · 概览</span><span class="f-mono">WPF · ACRYLIC</span></figcaption>
+        </figure>
+
+        <div class="wpf-side">
+          <div class="shot-pair">
+            <figure class="f-card shot" style="margin:0">
+              <img src="screenshots/components.png" alt="FrostUI 组件页" loading="lazy">
+              <figcaption class="shot__caption">组件库</figcaption>
+            </figure>
+            <figure class="f-card shot" style="margin:0">
+              <img src="screenshots/appearance-light.png" alt="FrostUI 浅色外观" loading="lazy">
+              <figcaption class="shot__caption">浅色主题</figcaption>
+            </figure>
+          </div>
+          <article class="f-card code-card">
+            <div class="code-card__head">
+              <span class="code-card__title"><span class="f-pill f-pill--accent">XAML</span> 最小窗口</span>
+              <button class="f-btn f-btn--icon f-btn--ghost" type="button" data-f-copy="#code-xaml" aria-label="复制 XAML">
+                <svg width="15" height="15"><use href="#i-copy"/></svg>
+              </button>
+            </div>
+            <pre class="f-code"><code id="code-xaml">&lt;frost:FrostWindow
+  xmlns:frost="clr-namespace:FrostUI.Controls;assembly=FrostUI"
+  Style="{StaticResource FrostWindowStyle}"
+  Backdrop="Acrylic"
+  TintOpacity="0.28"&gt;
+  &lt;Grid&gt;…&lt;/Grid&gt;
+&lt;/frost:FrostWindow&gt;</code></pre>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DOCS ============ -->
+  <section class="section" id="docs">
+    <div class="f-container">
+      <div class="section__head">
+        <p class="section__eyebrow">DOCUMENTATION</p>
+        <h2>继续<span class="f-grad-text">往下读</span>。</h2>
+      </div>
+      <div class="doc-links">
+        <a class="f-card f-card--hover doc-link" href="docs/architecture.md">
+          <span class="f-badge"><svg width="18" height="18"><use href="#i-code"/></svg></span>
+          <span class="doc-link__meta"><b>架构说明</b><span>项目结构、渲染管线与主题机制</span></span>
+          <svg class="doc-link__go" width="15" height="15"><use href="#i-external"/></svg>
+        </a>
+        <a class="f-card f-card--hover doc-link" href="web/README.md">
+          <span class="f-badge"><svg width="18" height="18"><use href="#i-layers"/></svg></span>
+          <span class="doc-link__meta"><b>Web 组件文档</b><span>类名、JS API 与主题令牌</span></span>
+          <svg class="doc-link__go" width="15" height="15"><use href="#i-external"/></svg>
+        </a>
+        <a class="f-card f-card--hover doc-link" href="designer/README.md">
+          <span class="f-badge"><svg width="18" height="18"><use href="#i-window"/></svg></span>
+          <span class="doc-link__meta"><b>FrostUI Designer</b><span>可视化设计器与脚本手册</span></span>
+          <svg class="doc-link__go" width="15" height="15"><use href="#i-external"/></svg>
+        </a>
+        <a class="f-card f-card--hover doc-link" href="https://github.com/TeaBoss-Developer/FrostUI" target="_blank" rel="noopener">
+          <span class="f-badge"><svg width="18" height="18"><use href="#i-github"/></svg></span>
+          <span class="doc-link__meta"><b>GitHub 仓库</b><span>源码、Issue 与 Release</span></span>
+          <svg class="doc-link__go" width="15" height="15"><use href="#i-external"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="f-container">
+    <p class="site-footer__quote">结束演奏的小提琴手，向等待她的人飞奔而来 —— 只不过，我是路人角色友人 A 罢了。</p>
+    <div class="site-footer__row">
+      <p>© <span id="year">2026</span> FrostUI · MIT License · Made by TeaBoss</p>
+      <nav class="site-footer__links" aria-label="页脚导航">
+        <a href="https://github.com/TeaBoss-Developer/FrostUI" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/TeaBoss-Developer/FrostUI/issues" target="_blank" rel="noopener">Issues</a>
+        <a href="#top">回到顶部</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+bin/
+obj/
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.log
+designer-error.log
+designer-selftest.log
+screenshots/_*.png
+artifacts/
+dist/
+node_modules/
+*.nupkg
+*.snupkg
+.DS_Store
+Thumbs.db
+*.tmp
+
+# prebuilt player payloads (built by the designer / scripts, not source)
+PlayerTemplates/
+**/PlayerTemplates/

@@ -1,0 +1,124 @@
+<ui:FrostWindow x:Class="FrostUI.Designer.Views.DebugWindow"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:ui="clr-namespace:FrostUI.Controls;assembly=FrostUI"
+                Title="调试脚本"
+                Width="980" Height="640"
+                MinWidth="760" MinHeight="480"
+                WindowStartupLocation="CenterOwner"
+                ShowInTaskbar="False"
+                Backdrop="Acrylic"
+                TintOpacity="0.32"
+                Style="{StaticResource FrostWindowStyle}">
+    <ui:FrostWindow.TitleBarContent>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <Border Background="{DynamicResource DangerSoftBrush}"
+                    BorderBrush="{DynamicResource CardBorderBrush}"
+                    BorderThickness="1" CornerRadius="5" Padding="7,2">
+                <TextBlock Text="DEBUG" FontFamily="{DynamicResource MonoFont}"
+                           FontSize="7.5" Foreground="{DynamicResource DangerBrush}" />
+            </Border>
+            <TextBlock x:Name="DebugTargetText" Text="脚本调试" FontSize="9.5" Margin="8,0,0,0"
+                       Foreground="{DynamicResource TextTertiaryBrush}" />
+        </StackPanel>
+    </ui:FrostWindow.TitleBarContent>
+
+    <Grid Margin="22,16,22,18">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="断点" FontSize="9" FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextSecondaryBrush}" />
+                    <TextBlock x:Name="DebugBreakpointText" Text="" FontFamily="{DynamicResource MonoFont}"
+                               FontSize="8" Foreground="{DynamicResource DangerBrush}" Margin="8,0,0,0"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+                <TextBlock x:Name="DebugStatusText" Text="准备" HorizontalAlignment="Right"
+                           FontFamily="{DynamicResource MonoFont}" FontSize="8"
+                           Foreground="{DynamicResource TextTertiaryBrush}" />
+            </Grid>
+            <Grid Margin="0,6,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="DebugBreakpointSpecBox" Height="26" FontSize="8"
+                         Style="{StaticResource GlassTextBoxStyle}" Padding="7,0"
+                         VerticalContentAlignment="Center"
+                         ToolTip="每行一个：5:计数 > 3 或 7:log" />
+                <Button Grid.Column="1" Style="{StaticResource MiniActionButtonStyle}"
+                        Content="应用断点" Margin="6,0,0,0"
+                        Click="ApplyBreakpoints_OnClick" />
+            </Grid>
+        </StackPanel>
+
+        <Grid Grid.Row="1" Margin="0,8,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Border Background="#21000000" BorderBrush="{DynamicResource CardBorderBrush}"
+                    BorderThickness="1" CornerRadius="8" Padding="2">
+                <TextBox x:Name="DebugCodeBox" Style="{StaticResource ConsoleTextBoxStyle}"
+                         IsReadOnly="True" FontSize="9" />
+            </Border>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Border Background="#21000000" BorderBrush="{DynamicResource CardBorderBrush}"
+                        BorderThickness="1" CornerRadius="8" Padding="2">
+                    <DockPanel>
+                        <TextBlock DockPanel.Dock="Top" Text="变量监视" FontSize="8"
+                                   Foreground="{DynamicResource TextTertiaryBrush}" Margin="6,5,6,2" />
+                        <TextBox x:Name="DebugVariablesBox" Style="{StaticResource ConsoleTextBoxStyle}"
+                                 IsReadOnly="True" FontSize="8" />
+                    </DockPanel>
+                </Border>
+                <Border Grid.Row="2" Background="#21000000" BorderBrush="{DynamicResource CardBorderBrush}"
+                        BorderThickness="1" CornerRadius="8" Padding="2">
+                    <DockPanel>
+                        <TextBlock DockPanel.Dock="Top" Text="调用栈" FontSize="8"
+                                   Foreground="{DynamicResource TextTertiaryBrush}" Margin="6,5,6,2" />
+                        <TextBox x:Name="DebugCallStackBox" Style="{StaticResource ConsoleTextBoxStyle}"
+                                 IsReadOnly="True" FontSize="8" />
+                    </DockPanel>
+                </Border>
+                <Border Grid.Row="4" Background="#21000000" BorderBrush="{DynamicResource CardBorderBrush}"
+                        BorderThickness="1" CornerRadius="8" Padding="2">
+                    <DockPanel>
+                        <TextBlock DockPanel.Dock="Top" Text="日志断点" FontSize="8"
+                                   Foreground="{DynamicResource TextTertiaryBrush}" Margin="6,5,6,2" />
+                        <TextBox x:Name="DebugLogBox" Style="{StaticResource ConsoleTextBoxStyle}"
+                                 IsReadOnly="True" FontSize="8" />
+                    </DockPanel>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="2" Margin="0,10,0,0">
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="DebugContinueButton" Content="继续" Style="{StaticResource PrimaryButtonStyle}"
+                        Height="32" MinWidth="76" Click="Continue_OnClick" />
+                <Button x:Name="DebugStepButton" Content="单步" Style="{StaticResource GhostButtonStyle}"
+                        Height="32" MinWidth="76" Margin="8,0,0,0" Click="Step_OnClick" />
+                <Button Content="停止" Style="{StaticResource GhostButtonStyle}"
+                        Height="32" MinWidth="76" Margin="8,0,0,0" Click="Stop_OnClick" />
+            </StackPanel>
+            <TextBlock x:Name="DebugLineText" HorizontalAlignment="Right" VerticalAlignment="Center"
+                       FontFamily="{DynamicResource MonoFont}" FontSize="8"
+                       Foreground="{DynamicResource TextDisabledBrush}" />
+        </Grid>
+    </Grid>
+</ui:FrostWindow>

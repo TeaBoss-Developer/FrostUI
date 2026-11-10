@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>FrostUI.Player</AssemblyName>
+    <RootNamespace>FrostUI.Player</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\FrostUI\FrostUI.csproj" />
+  </ItemGroup>
+
+  <!--
+    The player deliberately shares the designer's document, script and preview
+    implementation. This keeps the exported application byte-for-byte aligned
+    with what the F5 preview runs.
+  -->
+  <ItemGroup>
+    <Compile Include="..\..\designer\FrostUI.Designer\Models\*.cs"
+             Link="Shared\Models\%(Filename)%(Extension)" />
+    <Compile Include="..\..\designer\FrostUI.Designer\Scripting\*.cs"
+             Link="Shared\Scripting\%(Filename)%(Extension)" />
+    <Compile Include="..\..\designer\FrostUI.Designer\Converters\*.cs"
+             Link="Shared\Converters\%(Filename)%(Extension)" />
+    <Compile Include="..\..\designer\FrostUI.Designer\Services\DesignSerializer.cs"
+             Link="Shared\Services\DesignSerializer.cs" />
+    <Compile Include="..\..\designer\FrostUI.Designer\Services\ProjectDataStore.cs"
+             Link="Shared\Services\ProjectDataStore.cs" />
+    <Compile Include="..\..\designer\FrostUI.Designer\Services\PreviewControlFactory.cs"
+             Link="Shared\Services\PreviewControlFactory.cs" />
+    <Compile Include="..\..\designer\FrostUI.Designer\Services\AnimationTimelinePlayer.cs"
+             Link="Shared\Services\AnimationTimelinePlayer.cs" />
+    <Page Include="..\..\designer\FrostUI.Designer\Views\PreviewWindow.xaml"
+          Link="Shared\Views\PreviewWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="..\..\designer\FrostUI.Designer\Views\PreviewWindow.xaml.cs"
+             Link="Shared\Views\PreviewWindow.xaml.cs">
+      <DependentUpon>PreviewWindow.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>

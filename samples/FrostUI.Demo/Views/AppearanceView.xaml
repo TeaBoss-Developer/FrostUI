@@ -1,0 +1,592 @@
+<UserControl x:Class="FrostUI.Demo.Views.AppearanceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:FrostUI.Controls;assembly=FrostUI"
+             Background="Transparent"
+             FontFamily="{DynamicResource UiFont}">
+
+    <UserControl.Resources>
+        <Style x:Key="ThemeTileStyle" TargetType="{x:Type RadioButton}">
+            <Setter Property="Height" Value="72" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="BorderBrush" Value="{DynamicResource CardBorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <Border x:Name="Root"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="11"
+                                Padding="10">
+                            <Grid>
+                                <ContentPresenter />
+                                <Border x:Name="CheckBadge" Width="15" Height="15" CornerRadius="7.5"
+                                        Background="{DynamicResource AccentBrush}"
+                                        HorizontalAlignment="Right" VerticalAlignment="Top"
+                                        Margin="0,-2,-2,0" Opacity="0">
+                                    <TextBlock Text="&#xE73E;" FontFamily="{DynamicResource IconFont}"
+                                               FontSize="7" Foreground="{DynamicResource AccentContrastBrush}"
+                                               HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Root" Property="BorderBrush"
+                                        Value="{DynamicResource CardBorderStrongBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Root" Property="BorderBrush"
+                                        Value="{DynamicResource AccentBrush}" />
+                                <Setter TargetName="Root" Property="BorderThickness" Value="1.5" />
+                                <Setter TargetName="CheckBadge" Property="Opacity" Value="1" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="MiniLabelStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource CaptionTextStyle}">
+            <Setter Property="FontSize" Value="8.5" />
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer Style="{StaticResource PageScrollViewerStyle}">
+        <StackPanel Margin="28,20,28,22">
+
+            <!-- Header -->
+            <Grid Margin="2,0,2,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="A P P E A R A N C E   ·   LAB"
+                                   Style="{StaticResource EyebrowTextStyle}" />
+                        <Border Margin="10,0,0,0" Padding="6,1" CornerRadius="4"
+                                Background="{DynamicResource InsetSurfaceBrush}">
+                            <TextBlock Text="LIVE" FontSize="7" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource SuccessBrush}" />
+                        </Border>
+                    </StackPanel>
+                    <TextBlock Text="调一调，玻璃就有了性格。"
+                               Style="{StaticResource PageTitleTextStyle}"
+                               FontSize="28"
+                               Margin="0,6,0,0" />
+                    <TextBlock Text="主题、强调色与窗口材质都会即时应用到当前窗口。"
+                               Style="{StaticResource BodyTextStyle}"
+                               FontSize="12"
+                               Margin="0,3,0,0" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal"
+                            VerticalAlignment="Bottom" Margin="0,0,0,4">
+                    <Button Style="{StaticResource SecondaryButtonStyle}"
+                            Height="30" Padding="11,0" MinWidth="0"
+                            Click="ResetAppearance_OnClick">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE777;" FontFamily="{DynamicResource IconFont}"
+                                       FontSize="10" Margin="0,0,6,0" VerticalAlignment="Center" />
+                            <TextBlock Text="重置外观" FontSize="10.5" />
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource PrimaryButtonStyle}"
+                            Height="30" Padding="12,0" MinWidth="0"
+                            Margin="8,0,0,0"
+                            Click="RefreshMaterial_OnClick">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="刷新材质" FontSize="10.5" FontWeight="SemiBold" />
+                            <TextBlock Text="&#xE72C;" FontFamily="{DynamicResource IconFont}"
+                                       FontSize="9" Margin="7,0,0,0" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <Grid Height="548" Margin="0,16,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.28*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Live preview -->
+                <controls:GlassCard Grid.Column="0" Margin="0,0,7,0"
+                                    CornerRadius="20" Padding="18,16"
+                                    HasShadow="True"
+                                    VerticalContentAlignment="Stretch">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="26" Height="26" CornerRadius="8"
+                                        Background="{DynamicResource AccentSoftBrush}">
+                                    <TextBlock Text="&#xE7B3;" FontFamily="{DynamicResource IconFont}"
+                                               FontSize="10" Foreground="{DynamicResource AccentBrush}"
+                                               HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                                <TextBlock Text="实时预览" Style="{StaticResource CardTitleTextStyle}"
+                                           FontSize="12.5" Margin="8,0,0,0" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <Border CornerRadius="5" Padding="7,2" HorizontalAlignment="Right"
+                                    Background="{DynamicResource InsetSurfaceBrush}"
+                                    BorderBrush="{DynamicResource CardBorderBrush}" BorderThickness="1">
+                                <TextBlock x:Name="PreviewThemeText" Text="DARK · #84AEFF"
+                                           FontFamily="{DynamicResource MonoFont}" FontSize="7"
+                                           Foreground="{DynamicResource TextTertiaryBrush}" />
+                            </Border>
+                        </Grid>
+
+                        <Border Grid.Row="1" Margin="0,12,0,12" CornerRadius="14" ClipToBounds="True">
+                            <Grid>
+                                <Border Background="{DynamicResource HeroGradientBrush}" />
+                                <Rectangle>
+                                    <Rectangle.Fill>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                            <GradientStop Color="#FF0B1220" Offset="0" />
+                                            <GradientStop Color="#FF161431" Offset="0.55" />
+                                            <GradientStop Color="#FF2A1028" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                <Ellipse Width="330" Height="330" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                         Margin="-90,-120,0,0" Fill="{DynamicResource AmbientBlueBrush}" />
+                                <Ellipse Width="280" Height="280" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                         Margin="0,0,-70,-100" Fill="{DynamicResource AmbientVioletBrush}" />
+                                <Ellipse Width="180" Height="180" HorizontalAlignment="Right" VerticalAlignment="Top"
+                                         Margin="0,-50,30,0" Fill="{DynamicResource AmbientTealBrush}" />
+                                <TextBlock Text="F R O S T"
+                                           FontFamily="{DynamicResource DisplayFont}"
+                                           FontSize="62" FontWeight="Light"
+                                           Foreground="#12FFFFFF"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                                           Margin="0,-100,0,0" />
+
+                                <!-- Miniature frosted window -->
+                                <Border Width="400" Height="222"
+                                        CornerRadius="13"
+                                        Background="{DynamicResource WindowSurfaceBrush}"
+                                        BorderBrush="{DynamicResource WindowEdgeBrush}"
+                                        BorderThickness="1"
+                                        HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Border.Effect>
+                                        <DropShadowEffect BlurRadius="30" ShadowDepth="12" Direction="270"
+                                                          Color="#B3000000" Opacity="0.4" />
+                                    </Border.Effect>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Border Background="{DynamicResource TitleBarBrush}"
+                                                BorderBrush="{DynamicResource TitleBarBorderBrush}"
+                                                BorderThickness="0,0,0,1" CornerRadius="13,13,0,0">
+                                            <Grid Margin="10,0,8,0">
+                                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                    <Ellipse Width="4" Height="4" Fill="#FFFF8C9A" Margin="0,0,3,0" />
+                                                    <Ellipse Width="4" Height="4" Fill="#FFFFD479" Margin="0,0,3,0" />
+                                                    <Ellipse Width="4" Height="4" Fill="#FF74E4C4" />
+                                                    <TextBlock Text="FrostUI / Preview"
+                                                               FontFamily="{DynamicResource MonoFont}"
+                                                               FontSize="6.5"
+                                                               Foreground="{DynamicResource TextTertiaryBrush}"
+                                                               Margin="8,0,0,0" />
+                                                </StackPanel>
+                                                <TextBlock Text="&#xE921;  &#xE922;  &#xE8BB;"
+                                                           FontFamily="{DynamicResource IconFont}"
+                                                           FontSize="6"
+                                                           HorizontalAlignment="Right"
+                                                           Foreground="{DynamicResource TextTertiaryBrush}" />
+                                            </Grid>
+                                        </Border>
+
+                                        <Grid Grid.Row="1" Margin="10,9,10,9">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="76" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel>
+                                                <TextBlock Text="WORKSPACE" FontFamily="{DynamicResource MonoFont}"
+                                                           FontSize="5.5" Foreground="{DynamicResource TextDisabledBrush}" />
+                                                <Border Height="19" CornerRadius="5" Margin="0,5,0,0"
+                                                        Background="{DynamicResource NavSelectedBrush}"
+                                                        BorderBrush="{DynamicResource NavSelectedBorderBrush}"
+                                                        BorderThickness="1">
+                                                    <StackPanel Orientation="Horizontal" Margin="6,0">
+                                                        <Ellipse Width="3" Height="3" Fill="{DynamicResource AccentBrush}"
+                                                                 VerticalAlignment="Center" />
+                                                        <TextBlock Text="Overview" FontSize="6.5"
+                                                                   Foreground="{DynamicResource TextPrimaryBrush}"
+                                                                   Margin="4,0,0,0" VerticalAlignment="Center" />
+                                                    </StackPanel>
+                                                </Border>
+                                                <TextBlock Text="Components" FontSize="6.5"
+                                                           Foreground="{DynamicResource TextTertiaryBrush}"
+                                                           Margin="7,7,0,0" />
+                                                <TextBlock Text="Appearance" FontSize="6.5"
+                                                           Foreground="{DynamicResource TextTertiaryBrush}"
+                                                           Margin="7,6,0,0" />
+                                            </StackPanel>
+
+                                            <Grid Grid.Column="1" Margin="10,0,0,0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Text="把光，留在界面里。"
+                                                           FontFamily="{DynamicResource DisplayFont}"
+                                                           FontSize="14" FontWeight="SemiBold"
+                                                           Foreground="{DynamicResource TextPrimaryBrush}" />
+                                                <Grid Grid.Row="1" Margin="0,7,0,0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Border Margin="0,0,4,0" CornerRadius="8" Padding="7,6"
+                                                            Background="{DynamicResource CardGradientBrush}"
+                                                            BorderBrush="{DynamicResource CardBorderBrush}"
+                                                            BorderThickness="1">
+                                                        <StackPanel>
+                                                            <TextBlock Text="MATERIAL" FontFamily="{DynamicResource MonoFont}"
+                                                                       FontSize="5.5" Foreground="{DynamicResource TextDisabledBrush}" />
+                                                            <TextBlock Text="Acrylic" FontSize="9" FontWeight="SemiBold"
+                                                                       Foreground="{DynamicResource TextPrimaryBrush}" />
+                                                            <Border Height="3" CornerRadius="1.5" Margin="0,7,0,0"
+                                                                    Background="{DynamicResource AccentGradientBrush}" />
+                                                        </StackPanel>
+                                                    </Border>
+                                                    <Border Grid.Column="1" Margin="4,0,0,0" CornerRadius="8" Padding="7,6"
+                                                            Background="{DynamicResource CardGradientBrush}"
+                                                            BorderBrush="{DynamicResource CardBorderBrush}"
+                                                            BorderThickness="1">
+                                                        <StackPanel>
+                                                            <TextBlock Text="THEME" FontFamily="{DynamicResource MonoFont}"
+                                                                       FontSize="5.5" Foreground="{DynamicResource TextDisabledBrush}" />
+                                                            <TextBlock Text="Glass" FontSize="9" FontWeight="SemiBold"
+                                                                       Foreground="{DynamicResource TextPrimaryBrush}" />
+                                                            <StackPanel Orientation="Horizontal" Margin="0,7,0,0">
+                                                                <Ellipse Width="4" Height="4" Fill="{DynamicResource AccentBrush}" Margin="0,0,2,0" />
+                                                                <Ellipse Width="4" Height="4" Fill="{DynamicResource SuccessBrush}" Margin="0,0,2,0" />
+                                                                <Ellipse Width="4" Height="4" Fill="{DynamicResource WarningBrush}" />
+                                                            </StackPanel>
+                                                        </StackPanel>
+                                                    </Border>
+                                                </Grid>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+
+                                <Border x:Name="PreviewTintLayer"
+                                        Background="{DynamicResource FallbackWindowBrush}"
+                                        Opacity="0.18"
+                                        CornerRadius="14"
+                                        IsHitTestVisible="False" />
+                            </Grid>
+                        </Border>
+
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <TextBlock Text="EFFECTIVE" Style="{StaticResource MiniLabelStyle}" />
+                                <TextBlock x:Name="PreviewBackdropText" Text="Acrylic"
+                                           FontFamily="{DynamicResource MonoFont}" FontSize="9.5"
+                                           Foreground="{DynamicResource SuccessBrush}" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="TINT" Style="{StaticResource MiniLabelStyle}" />
+                                <TextBlock x:Name="PreviewTintText" Text="28%"
+                                           FontFamily="{DynamicResource MonoFont}" FontSize="9.5"
+                                           Foreground="{DynamicResource TextPrimaryBrush}" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Text="ACCENT" Style="{StaticResource MiniLabelStyle}" />
+                                <TextBlock x:Name="PreviewAccentText" Text="#84AEFF"
+                                           FontFamily="{DynamicResource MonoFont}" FontSize="9.5"
+                                           Foreground="{DynamicResource AccentBrush}" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </controls:GlassCard>
+
+                <!-- Settings column -->
+                <Grid Grid.Column="1" Margin="7,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="238" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <controls:GlassCard Grid.Row="0" CornerRadius="18" Padding="18,15"
+                                        VerticalContentAlignment="Stretch">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid>
+                                <TextBlock Text="主题" Style="{StaticResource CardTitleTextStyle}" FontSize="12.5" />
+                                <TextBlock Text="局部即时生效" HorizontalAlignment="Right"
+                                           FontSize="8" Foreground="{DynamicResource TextDisabledBrush}"
+                                           VerticalAlignment="Center" />
+                            </Grid>
+
+                            <Grid Grid.Row="1" Margin="0,11,0,0" VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <RadioButton x:Name="ThemeDarkBtn" GroupName="Theme"
+                                             Style="{StaticResource ThemeTileStyle}"
+                                             Background="#160E1522"
+                                             Checked="ThemeTile_OnChecked"
+                                             Margin="0,0,4,0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="54" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Border Width="50" Height="42" CornerRadius="6"
+                                                Background="#FF0B101B" BorderBrush="#2EFFFFFF"
+                                                BorderThickness="1">
+                                            <Grid Margin="5">
+                                                <Border Height="3" Width="18" CornerRadius="1.5"
+                                                        Background="#CCFFFFFF" HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top" />
+                                                <Border Height="2" Width="30" CornerRadius="1"
+                                                        Background="#33FFFFFF" HorizontalAlignment="Left"
+                                                        VerticalAlignment="Bottom" Margin="0,0,0,8" />
+                                                <Border Height="2" Width="22" CornerRadius="1"
+                                                        Background="#22FFFFFF" HorizontalAlignment="Left"
+                                                        VerticalAlignment="Bottom" />
+                                            </Grid>
+                                        </Border>
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="7,0,0,0">
+                                            <TextBlock Text="深色" FontSize="10.5" FontWeight="SemiBold"
+                                                       Foreground="{DynamicResource TextPrimaryBrush}" />
+                                            <TextBlock Text="Dark" FontFamily="{DynamicResource MonoFont}"
+                                                       FontSize="7" Foreground="{DynamicResource TextTertiaryBrush}" />
+                                        </StackPanel>
+                                    </Grid>
+                                </RadioButton>
+                                <RadioButton x:Name="ThemeLightBtn" Grid.Column="1" GroupName="Theme"
+                                             Style="{StaticResource ThemeTileStyle}"
+                                             Background="#E6F7F9FE"
+                                             Checked="ThemeTile_OnChecked"
+                                             Margin="4,0,0,0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="54" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Border Width="50" Height="42" CornerRadius="6"
+                                                Background="#FFF7F9FE" BorderBrush="#26000000"
+                                                BorderThickness="1">
+                                            <Grid Margin="5">
+                                                <Border Height="3" Width="18" CornerRadius="1.5"
+                                                        Background="#CC111827" HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top" />
+                                                <Border Height="2" Width="30" CornerRadius="1"
+                                                        Background="#33111827" HorizontalAlignment="Left"
+                                                        VerticalAlignment="Bottom" Margin="0,0,0,8" />
+                                                <Border Height="2" Width="22" CornerRadius="1"
+                                                        Background="#22111827" HorizontalAlignment="Left"
+                                                        VerticalAlignment="Bottom" />
+                                            </Grid>
+                                        </Border>
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="7,0,0,0">
+                                            <TextBlock Text="浅色" FontSize="10.5" FontWeight="SemiBold"
+                                                       Foreground="#FF111827" />
+                                            <TextBlock Text="Light" FontFamily="{DynamicResource MonoFont}"
+                                                       FontSize="7" Foreground="#FF7C8799" />
+                                        </StackPanel>
+                                    </Grid>
+                                </RadioButton>
+                            </Grid>
+
+                            <Grid Grid.Row="2" Margin="0,13,0,0">
+                                <TextBlock Text="强调色" FontSize="9" VerticalAlignment="Center"
+                                           Foreground="{DynamicResource TextTertiaryBrush}" />
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <RadioButton x:Name="AccentBlue" GroupName="Accent2"
+                                                 Style="{StaticResource AccentSwatchStyle}"
+                                                 Background="#84AEFF" Tag="#84AEFF" IsChecked="True"
+                                                 Checked="AccentSwatch_OnChecked" />
+                                    <RadioButton x:Name="AccentMint" GroupName="Accent2"
+                                                 Style="{StaticResource AccentSwatchStyle}"
+                                                 Background="#63E6BE" Tag="#63E6BE"
+                                                 Checked="AccentSwatch_OnChecked" />
+                                    <RadioButton x:Name="AccentViolet" GroupName="Accent2"
+                                                 Style="{StaticResource AccentSwatchStyle}"
+                                                 Background="#B79CFF" Tag="#B79CFF"
+                                                 Checked="AccentSwatch_OnChecked" />
+                                    <RadioButton x:Name="AccentPink" GroupName="Accent2"
+                                                 Style="{StaticResource AccentSwatchStyle}"
+                                                 Background="#FF9BC7" Tag="#FF9BC7"
+                                                 Checked="AccentSwatch_OnChecked" />
+                                    <RadioButton x:Name="AccentAmber" GroupName="Accent2"
+                                                 Style="{StaticResource AccentSwatchStyle}"
+                                                 Background="#FFC46B" Tag="#FFC46B" Margin="0"
+                                                 Checked="AccentSwatch_OnChecked" />
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </controls:GlassCard>
+
+                    <controls:GlassCard Grid.Row="1" Margin="0,14,0,0"
+                                        CornerRadius="18" Padding="18,15"
+                                        VerticalContentAlignment="Stretch">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid>
+                                <TextBlock Text="窗口材质" Style="{StaticResource CardTitleTextStyle}" FontSize="12.5" />
+                                <TextBlock x:Name="EffectiveText" Text="Acrylic"
+                                           HorizontalAlignment="Right"
+                                           FontFamily="{DynamicResource MonoFont}" FontSize="8"
+                                           Foreground="{DynamicResource SuccessBrush}"
+                                           VerticalAlignment="Center" />
+                            </Grid>
+
+                            <WrapPanel Grid.Row="1" Margin="0,9,0,0">
+                                <RadioButton x:Name="MaterialAcrylic" Content="Acrylic" GroupName="Material2"
+                                             Style="{StaticResource GlassRadioButtonStyle}"
+                                             Tag="Acrylic" IsChecked="True"
+                                             Checked="MaterialRadio_OnChecked" />
+                                <RadioButton x:Name="MaterialMica" Content="Mica" GroupName="Material2"
+                                             Style="{StaticResource GlassRadioButtonStyle}"
+                                             Tag="Mica"
+                                             Checked="MaterialRadio_OnChecked" />
+                                <RadioButton x:Name="MaterialMicaAlt" Content="Mica Alt" GroupName="Material2"
+                                             Style="{StaticResource GlassRadioButtonStyle}"
+                                             Tag="MicaAlt"
+                                             Checked="MaterialRadio_OnChecked" />
+                                <RadioButton x:Name="MaterialBlur" Content="Blur" GroupName="Material2"
+                                             Style="{StaticResource GlassRadioButtonStyle}"
+                                             Tag="Blur"
+                                             Checked="MaterialRadio_OnChecked" />
+                                <RadioButton x:Name="MaterialNone" Content="关闭" GroupName="Material2"
+                                             Style="{StaticResource GlassRadioButtonStyle}"
+                                             Tag="None"
+                                             Checked="MaterialRadio_OnChecked" />
+                            </WrapPanel>
+
+                            <StackPanel Grid.Row="2" Margin="0,12,0,0">
+                                <Grid>
+                                    <TextBlock Text="玻璃浓度" FontSize="9"
+                                               Foreground="{DynamicResource TextTertiaryBrush}" />
+                                    <TextBlock x:Name="TintValueText" Text="28%"
+                                               HorizontalAlignment="Right"
+                                               FontFamily="{DynamicResource MonoFont}" FontSize="8.5"
+                                               Foreground="{DynamicResource AccentBrush}" />
+                                </Grid>
+                                <Slider x:Name="TintSlider" Style="{StaticResource GlassSliderStyle}"
+                                        Minimum="0" Maximum="60" Value="28"
+                                        Margin="0,4,0,0"
+                                        ToolTip="仅 Acrylic 使用此 tint；Mica 由系统主题决定"
+                                        ValueChanged="TintSlider_OnValueChanged" />
+                            </StackPanel>
+
+                            <Border Grid.Row="3" Margin="0,10,0,10"
+                                    Padding="10,8" CornerRadius="8"
+                                    Background="{DynamicResource InsetSurfaceBrush}"
+                                    VerticalAlignment="Bottom">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid>
+                                        <TextBlock x:Name="MaterialHintText"
+                                                   Text="DWM 实时合成，支持失焦保持"
+                                                   FontSize="8"
+                                                   Foreground="{DynamicResource TextTertiaryBrush}" />
+                                        <TextBlock Text="AUTO FALLBACK"
+                                                   HorizontalAlignment="Right"
+                                                   FontFamily="{DynamicResource MonoFont}" FontSize="6.5"
+                                                   Foreground="{DynamicResource TextDisabledBrush}" />
+                                    </Grid>
+                                    <Border Grid.Row="1" Height="1" Margin="0,7,0,6"
+                                            Background="{DynamicResource DividerBrush}" />
+                                    <Grid Grid.Row="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel>
+                                            <TextBlock Text="合成位置" FontSize="7.5"
+                                                       Foreground="{DynamicResource TextDisabledBrush}" />
+                                            <TextBlock Text="DWM" FontFamily="{DynamicResource MonoFont}"
+                                                       FontSize="8.5" Foreground="{DynamicResource TextSecondaryBrush}" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock Text="失焦策略" FontSize="7.5"
+                                                       Foreground="{DynamicResource TextDisabledBrush}" />
+                                            <TextBlock Text="保持材质" FontSize="8.5"
+                                                       Foreground="{DynamicResource TextSecondaryBrush}" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="2">
+                                            <TextBlock Text="回退顺序" FontSize="7.5"
+                                                       Foreground="{DynamicResource TextDisabledBrush}" />
+                                            <TextBlock Text="Mica → Acrylic" FontFamily="{DynamicResource MonoFont}"
+                                                       FontSize="8" Foreground="{DynamicResource TextSecondaryBrush}" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+
+                            <Grid Grid.Row="4">
+                                <Button Style="{StaticResource GhostButtonStyle}"
+                                        Height="30" MinWidth="0" Padding="9,0"
+                                        HorizontalAlignment="Left"
+                                        Click="GoComponents_OnClick">
+                                    <TextBlock Text="查看控件  →" FontSize="10" />
+                                </Button>
+                                <Button Style="{StaticResource PrimaryButtonStyle}"
+                                        Height="30" MinWidth="0" Padding="12,0"
+                                        HorizontalAlignment="Right"
+                                        Click="RefreshMaterial_OnClick">
+                                    <TextBlock Text="应用材质" FontSize="10" FontWeight="SemiBold" />
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </controls:GlassCard>
+                </Grid>
+            </Grid>
+
+            <Grid Margin="2,15,2,0">
+                <Border Height="1" VerticalAlignment="Top"
+                        Background="{DynamicResource DividerBrush}" />
+                <TextBlock Text="所有更改即时生效，不需要重启窗口"
+                           Margin="0,9,0,0"
+                           FontSize="8"
+                           Foreground="{DynamicResource TextDisabledBrush}" />
+                <TextBlock Text="FROSTUI / APPEARANCE"
+                           HorizontalAlignment="Right" Margin="0,9,0,0"
+                           FontFamily="{DynamicResource MonoFont}" FontSize="7"
+                           Foreground="{DynamicResource TextDisabledBrush}" />
+            </Grid>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

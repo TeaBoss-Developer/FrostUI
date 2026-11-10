@@ -1,0 +1,79 @@
+{
+  "name": "数据控件示例",
+  "windowTitle": "FrostUI · 数据控件",
+  "windowWidth": 980,
+  "windowHeight": 620,
+  "backdrop": "acrylic",
+  "tintOpacity": 0.3,
+  "gridSize": 8,
+  "description": "数据表格、树形列表、重复卡片、柱状图 / 折线图 / 饼图示例。",
+  "version": "1.0.0",
+  "company": "",
+  "iconPath": "",
+  "controls": [
+    {
+      "name": "表格_项目",
+      "kind": "dataGrid",
+      "x": 40,
+      "y": 28,
+      "width": 500,
+      "height": 220,
+      "cornerRadius": 10,
+      "tableColumns": "名称\n状态\n数量",
+      "listItems": "苹果|正常|12\n香蕉|缺货|0\n橙子|正常|8\n葡萄|正常|24",
+      "selectedItem": "苹果",
+      "scripts": {
+        "行点击": "标签_结果.文本 = \"表格选中：\" + 表格_项目.选中项",
+        "单元格改变": "标签_结果.文本 = \"单元格已修改\""
+      }
+    },
+    {
+      "name": "树形_项目",
+      "kind": "treeView",
+      "x": 580,
+      "y": 28,
+      "width": 320,
+      "height": 220,
+      "cornerRadius": 10,
+      "listItems": "项目\n  文档\n    设计稿\n  图片\n设置\n  主题\n  快捷键",
+      "scripts": {
+        "选择改变": "标签_结果.文本 = \"树形选中：\" + 树形_项目.选中项"
+      }
+    },
+    {
+      "name": "重复_任务",
+      "kind": "repeater",
+      "x": 40,
+      "y": 280,
+      "width": 360,
+      "height": 230,
+      "cornerRadius": 10,
+      "listItems": "设计稿|待审核\n图标包|已完成\n组件库|进行中\n说明文档|未开始",
+      "scripts": {
+        "项点击": "标签_结果.文本 = \"任务：\" + 重复_任务.选中项"
+      }
+    },
+    {
+      "name": "图表_访问",
+      "kind": "chart",
+      "x": 430,
+      "y": 280,
+      "width": 470,
+      "height": 230,
+      "chartType": "Bar",
+      "listItems": "一月:12\n二月:18\n三月:9\n四月:22\n五月:16",
+      "cornerRadius": 10
+    },
+    {
+      "name": "标签_结果",
+      "kind": "label",
+      "x": 40,
+      "y": 540,
+      "width": 860,
+      "height": 40,
+      "text": "点击表格行、树形节点或重复卡片，结果显示在这里。",
+      "fontSize": 13,
+      "isBold": true
+    }
+  ]
+}

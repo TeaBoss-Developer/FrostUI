@@ -1,0 +1,183 @@
+{
+  "name": "表单控件示例",
+  "windowTitle": "FrostUI · 表单控件",
+  "windowWidth": 780,
+  "windowHeight": 560,
+  "backdrop": "acrylic",
+  "tintOpacity": 0.3,
+  "gridSize": 8,
+  "description": "复选框、单选框、下拉框、数字框、日期、搜索框、多行文本和密码框的交互示例。",
+  "version": "1.0.0",
+  "company": "",
+  "iconPath": "",
+  "controls": [
+    {
+      "name": "标签_标题",
+      "kind": "label",
+      "x": 40,
+      "y": 28,
+      "width": 560,
+      "height": 44,
+      "text": "表单控件示例",
+      "fontSize": 26,
+      "isBold": true,
+      "isVisible": true,
+      "isEnabled": true,
+      "cornerRadius": 0
+    },
+    {
+      "name": "标签_结果",
+      "kind": "label",
+      "x": 40,
+      "y": 82,
+      "width": 700,
+      "height": 56,
+      "text": "操作上方控件，结果会显示在这里。",
+      "fontSize": 14,
+      "isVisible": true,
+      "isEnabled": true,
+      "cornerRadius": 0
+    },
+    {
+      "name": "复选_记住",
+      "kind": "checkBox",
+      "x": 40,
+      "y": 162,
+      "width": 220,
+      "height": 32,
+      "text": "记住我",
+      "fontSize": 12,
+      "isOn": true,
+      "scripts": {
+        "切换": "标签_结果.文本 = \"记住我：\" + 文本(复选_记住.选中)"
+      }
+    },
+    {
+      "name": "单选_标准",
+      "kind": "radioButton",
+      "x": 40,
+      "y": 206,
+      "width": 200,
+      "height": 32,
+      "text": "标准模式",
+      "groupName": "运行模式",
+      "fontSize": 12,
+      "isOn": true,
+      "scripts": {
+        "切换": "如果 (单选_标准.选中) {\n    标签_结果.文本 = \"模式：标准\"\n}"
+      }
+    },
+    {
+      "name": "单选_高级",
+      "kind": "radioButton",
+      "x": 250,
+      "y": 206,
+      "width": 200,
+      "height": 32,
+      "text": "高级模式",
+      "groupName": "运行模式",
+      "fontSize": 12,
+      "isOn": false,
+      "scripts": {
+        "切换": "如果 (单选_高级.选中) {\n    标签_结果.文本 = \"模式：高级\"\n}"
+      },
+      "isEnabled": true
+    },
+    {
+      "name": "下拉_状态",
+      "kind": "comboBox",
+      "x": 40,
+      "y": 258,
+      "width": 240,
+      "height": 36,
+      "text": "请选择",
+      "fontSize": 12,
+      "listItems": "全部\n进行中\n已完成",
+      "selectedItem": "全部",
+      "scripts": {
+        "选择改变": "标签_结果.文本 = \"状态：\" + 下拉_状态.选中项"
+      }
+    },
+    {
+      "name": "数字_数量",
+      "kind": "numberBox",
+      "x": 300,
+      "y": 258,
+      "width": 150,
+      "height": 36,
+      "fontSize": 12,
+      "value": 3,
+      "minimum": 1,
+      "maximum": 20,
+      "step": 1,
+      "scripts": {
+        "值改变": "标签_结果.文本 = \"数量：\" + 文本(数字_数量.值)"
+      }
+    },
+    {
+      "name": "日期_选择",
+      "kind": "datePicker",
+      "x": 470,
+      "y": 258,
+      "width": 190,
+      "height": 36,
+      "text": "2026-10-27",
+      "fontSize": 12,
+      "scripts": {
+        "日期改变": "标签_结果.文本 = \"日期：\" + 日期_选择.文本"
+      }
+    },
+    {
+      "name": "多行_备注",
+      "kind": "textArea",
+      "x": 40,
+      "y": 314,
+      "width": 390,
+      "height": 92,
+      "text": "这里可以输入多行备注。",
+      "fontSize": 12,
+      "scripts": {
+        "文本改变": "标签_结果.文本 = \"备注长度：\" + 文本(长度(多行_备注.文本))"
+      }
+    },
+    {
+      "name": "搜索_关键词",
+      "kind": "searchBox",
+      "x": 450,
+      "y": 314,
+      "width": 290,
+      "height": 38,
+      "text": "搜索…",
+      "fontSize": 12,
+      "scripts": {
+        "提交": "标签_结果.文本 = \"搜索：\" + 搜索_关键词.文本"
+      }
+    },
+    {
+      "name": "密码_示例",
+      "kind": "passwordBox",
+      "x": 450,
+      "y": 368,
+      "width": 290,
+      "height": 38,
+      "text": "secret",
+      "fontSize": 12,
+      "scripts": {
+        "文本改变": "标签_结果.文本 = \"密码长度：\" + 文本(长度(密码_示例.文本))"
+      }
+    },
+    {
+      "name": "标签_说明",
+      "kind": "label",
+      "x": 40,
+      "y": 450,
+      "width": 700,
+      "height": 58,
+      "text": "复选框和单选框用 .选中，下拉框用 .选中项，数字框用 .值，日期/文本用 .文本。\n密码框显示为圆点，脚本仍然读写真实文本。",
+      "fontSize": 11,
+      "isVisible": true,
+      "isEnabled": true,
+      "cornerRadius": 0
+    }
+  ]
+}
