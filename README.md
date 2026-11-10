@@ -1,5 +1,8 @@
 # FrostUI
 
+[![NuGet](https://img.shields.io/nuget/v/FrostUI?color=84AEFF)](https://www.nuget.org/packages/FrostUI)
+[![License: MIT](https://img.shields.io/badge/license-MIT-63E6BE)](LICENSE)
+
 > **把光，留在界面里。** 一套毛玻璃 UI 框架：WPF 端真实 DWM 亚克力，Web 端零依赖玻璃组件库。
 > 官网 / 组件演示：<https://teaboss-developer.github.io/FrostUI/>
 
