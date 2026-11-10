@@ -163,16 +163,26 @@ python -m http.server 8080
 
 ## 发布
 
+WPF 包使用 nuget.org **Trusted Publishing**（OIDC，无需保存 API Key）：
+
+- Package owner：`TeaBoss`
+- Repository：`TeaBoss-Developer/FrostUI`
+- Workflow：`publish-nuget.yml`
+
+在 GitHub Actions 里手动运行 **Publish NuGet**，或推送 `v*` tag 即可自动发布；工作流会用 `NuGet/login@v1` 换取一次性密钥。
+
+需要长期密钥的备用方式：
+
 ```powershell
-# WPF → nuget.org
 $env:NUGET_API_KEY = "..."        # https://www.nuget.org/account/apikeys
 .\scripts\publish-nuget.ps1
-
-# Web → npm（包名 frostui-web）
-cd web; npm publish
 ```
 
-也可以把 `NUGET_API_KEY` 加到 GitHub 仓库 Secrets，推送 `v*` tag 时由 `.github/workflows/publish-nuget.yml` 自动发布。
+Web 包发布到 npm（包名 `frostui-web`）：
+
+```powershell
+cd web; npm publish
+```
 
 ## License
 
