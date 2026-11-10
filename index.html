@@ -204,12 +204,15 @@
 
         <article class="f-card code-card">
           <div class="code-card__head">
-            <span class="code-card__title"><span class="f-pill f-pill--accent">WPF</span> 打包并引用</span>
+            <span class="code-card__title"><span class="f-pill f-pill--accent">WPF</span> 安装并引用</span>
             <button class="f-btn f-btn--icon f-btn--ghost" type="button" data-f-copy="#code-wpf" aria-label="复制 WPF 代码">
               <svg width="15" height="15"><use href="#i-copy"/></svg>
             </button>
           </div>
-          <pre class="f-code"><code id="code-wpf">dotnet pack src/FrostUI/FrostUI.csproj -c Release -o artifacts
+          <pre class="f-code"><code id="code-wpf">dotnet add package FrostUI
+
+&lt;!-- 离线 / 内网：从源码打包 --&gt;
+dotnet pack src/FrostUI/FrostUI.csproj -c Release -o artifacts
 dotnet add package FrostUI --source artifacts
 
 &lt;!-- App.xaml --&gt;
@@ -484,7 +487,7 @@ dotnet add package FrostUI --source artifacts
       <div class="section__head">
         <p class="section__eyebrow">FROSTUI FOR WPF</p>
         <h2>桌面端的<span class="f-grad-text">真亚克力</span>。</h2>
-        <p class="section__lede">FrostWindow 直接调用 DWM：Acrylic、Mica、Mica Alt、Blur 与无材质回退。没有 WinUI 依赖，纯 WPF + .NET 9。</p>
+        <p class="section__lede">FrostWindow 直接调用 DWM：Acrylic、Mica、Mica Alt、Blur 与无材质回退。没有 WinUI 依赖，纯 WPF + .NET 9。已发布到 <a href="https://www.nuget.org/packages/FrostUI" target="_blank" rel="noopener" style="color:var(--f-accent-text)">nuget.org</a>。</p>
       </div>
 
       <div class="wpf-grid">
