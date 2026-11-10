@@ -114,6 +114,8 @@ ThemeManager.SetAccent(Color.FromRgb(0x84, 0xAE, 0xFF));
 - 按钮 / 输入框 / 滑杆 / 进度条 / 导航 / 滚动条等完整控件模板
 - `FrostUI.Demo` 示例应用与 `FrostUI.Designer` 可视化设计器
 
+> `PlayerTemplates/` 是导出功能使用的构建产物（约 260 MB），不纳入 Git；首次使用导出前运行 `designer/build-player-templates.ps1` 重新生成。
+
 更多细节见 [WPF 文档](docs/wpf.md)。
 
 ---
