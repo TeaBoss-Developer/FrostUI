@@ -18,7 +18,9 @@ npm install frostui-web
 
 ```js
 import 'frostui-web/frostui.css';
-import FrostUI from 'frostui-web';
+import 'frostui-web';                 // 执行脚本，注册全局 window.FrostUI
+
+const { setTheme, setAccent } = window.FrostUI;
 ```
 
 没有打包工具时：
