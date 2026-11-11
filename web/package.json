@@ -21,8 +21,12 @@
     "README.md"
   ],
   "sideEffects": [
-    "*.css"
+    "*.css",
+    "./frostui.js"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "ui",
     "css",
